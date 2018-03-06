@@ -288,8 +288,8 @@ def showdown(hands):
         if numberrank[i] == 1:
             winners.append(ordered[i])
     
-    print(numberrank)
-    print(ordered)
+    #print(numberrank)
+    #print(ordered)
     return winners
 
 def handrankboard(hand, board):
