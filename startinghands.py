@@ -44,7 +44,7 @@ def startinghandsequity(hands, board = []):#LIST of hands
     boardsfl = []
     handranks = [0] * len(hands)
     wins = [0] * len(hands)
-    print(wins)
+    #print(wins)
     d = dk.Deck()
     for h in hands:
         for j in range(len(h)):
@@ -70,4 +70,4 @@ def startinghandsequity(hands, board = []):#LIST of hands
     wins = [i/len(boardsfl) for i in wins]
     print(wins)
         
-startinghandsequity([[('As', 14, 0), ('Qs', 12, 0)],[('Ah', 14, 1),('Jh', 11, 1)],[('8h', 8, 2),('9h', 9, 2)]])
+startinghandsequity([[('As', 14, 0), ('Qs', 12, 0)],[('Ah', 14, 1),('Jh', 11, 1)],[('8s', 8, 0),('9s', 9, 0)]])

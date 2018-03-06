@@ -1,19 +1,19 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Mar  1 14:21:22 2018
+Created on Mon Mar  5 22:59:00 2018
 
 @author: Vince
 """
 import pandas as pd
 import numpy as np
 import handrank as hr
-from sklearn.linear_model import Lasso
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.pipeline import Pipeline, FeatureUnion
-from sklearn.preprocessing import StandardScaler, PolynomialFeatures, FunctionTransformer, Imputer
-import matplotlib.pyplot as plt
+
+from keras.models import Sequential
+from keras.layers.core import Dense
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
 df = pd.read_csv('data.csv')
 
 #print(df['name'].value_counts())
@@ -58,40 +58,46 @@ df['hand strength ^2'].plot.hist()
 ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', color = 'red')
 df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', color = 'blue', ax = ax)
 
-#X = df.drop(['filename','Unnamed: 0','street reached','name',
-#       'hand','board','hand strength fl','hand strength tr','hand strength rv',
-#       'hand strength ^2','bluff flop','bluff turn',
-#       'bluff river'], axis = 1)
-X = df[['log tot bets','log tot bets/stack','log tot agg',
-       'tot bets/stack','tot bets','rv bets(bb)','rv bets/pot',
-       'fl bets(bb)','fl bets/pot','tot agg','tr bets(bb)',
-       'tr bets/pot']]
+X = df.drop(['filename','Unnamed: 0','street reached','name',
+       'hand','board','hand strength fl','hand strength tr','hand strength rv',
+       'hand strength ^2','bluff flop','bluff turn',
+       'bluff river'], axis = 1)
+#X = df[['log tot bets','log tot bets/stack','log tot agg',
+#       'tot bets/stack','tot bets','rv bets(bb)','rv bets/pot',
+#       'fl bets(bb)','fl bets/pot','tot agg','tr bets(bb)',
+#       'tr bets/pot']]
 y = df['hand strength ^2']
-#print(X.columns)
+print(X.columns)
 #print(y)
 X_train, X_test, y_train, y_test = train_test_split(X,y)
 ss = StandardScaler()
-lasso = Lasso()
-pipe = Pipeline([
-    ('ss', ss),
-    ('lasso', lasso)
-])
-params = {
-        'lasso__alpha': np.arange(.01,.05,.25)
-}
-gs = GridSearchCV(pipe, param_grid = params)
-gs.fit(X_train, y_train)
+X_train = ss.fit_transform(X_train)
+X_test = ss.transform(X_test)
+print(X.shape)
+model = Sequential()
+model.add(Dense(50, input_dim = 46, activation = 'hard_sigmoid'))
+model.add(Dense(30, activation = 'hard_sigmoid'))
+model.add(Dense(10, activation = 'hard_sigmoid'))
 
-print(gs.best_score_)
-print(gs.best_params_)
-print(gs.score(X_test, y_test))
+model.add(Dense(1))
 
-z = pd.DataFrame(gs.predict(X_test))
+model.compile(loss = 'mean_squared_error', optimizer = 'adam')
+
+history = model.fit(X_train, y_train, validation_data = (X_test, y_test), epochs = 100)
+
+plt.figure(figsize = (10,10))
+plt.plot(history.history['loss'], label = 'Training Loss')
+plt.plot(history.history['val_loss'], label = 'Test Loss')
+plt.legend()
+
+z = pd.DataFrame(model.predict(X_test))
 z['test actual'] = list(y_test)
 
-#z[0] = np.sqrt(z[0])
-#z['test actual'] = np.sqrt(z['test actual'])
+z[0] = np.sqrt(z[0])
+z['test actual'] = np.sqrt(z['test actual'])
 z['diff'] = z[0] - z['test actual']
 print(np.median(np.abs(z['diff'])))
+z['diff'] = np.abs(z['diff'])
+print(z.sort_values('diff').values)
 #z['diff'].plot.hist()
 #print(np.std(z['diff']))
