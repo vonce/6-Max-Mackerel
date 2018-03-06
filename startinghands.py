@@ -51,6 +51,7 @@ def startinghandsequity(hands, board = []):#LIST of hands
             for i in d.deck:
                 if i in h:
                     d.deck.remove(i)
+
 #    print(d.deck)
     boardsfl += itertools.combinations(d.deck, 3)
     boardsfl = [list(i) for i in boardsfl]

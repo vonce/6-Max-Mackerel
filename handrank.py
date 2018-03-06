@@ -477,7 +477,7 @@ def convert(cards):# 'string' --> ('string', int, int)
 
 #print(ranklist)
 
-hnd = [('Qs', 12, 0), ('Ah', 14, 1)]
+hnd = [('Ac', 14, 3), ('Ah', 14, 1)]
 brd = [('Qc', 12, 3), ('4d', 4, 2), ('6h', 6, 1), ('Tc', 10, 3), ('As', 14, 0)]
 print('hole cards:', hnd)
 print('board:', brd)
