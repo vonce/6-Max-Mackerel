@@ -231,41 +231,42 @@ def handranker(hand):
     return h
 
 def showdown(hands):
-
+    winners = []
     h = ([(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)],0)
     ranks = [[],[],[],[],[],[],[],[],[],[]]
     ordered = []
     for hand in hands:
         if hand[1] == 0:
-            ranks[0].append(hand[0])
+            ranks[0].append(hand)
         if hand[1] == 1:
-            ranks[1].append(hand[0])
+            ranks[1].append(hand)
         if hand[1] == 2:
-            ranks[2].append(hand[0])
+            ranks[2].append(hand)
         if hand[1] == 3:
-            ranks[3].append(hand[0])
+            ranks[3].append(hand)
         if hand[1] == 4:
-            ranks[4].append(hand[0])
+            ranks[4].append(hand)
         if hand[1] == 5:
-            ranks[5].append(hand[0])
+            ranks[5].append(hand)
         if hand[1] == 6:
-            ranks[6].append(hand[0])
+            ranks[6].append(hand)
         if hand[1] == 7:
-            ranks[7].append(hand[0])
+            ranks[7].append(hand)
         if hand[1] == 8:
-            ranks[8].append(hand[0])
+            ranks[8].append(hand)
     for i in range(len(ranks)):
-        ranks[i] = sorted(ranks[i], key = lambda x: (x[0][1], x[1][1], x[2][1], x[3][1], x[4][1]))
-    #print(ranks)
+        ranks[i] = sorted(ranks[i], key = lambda x: (x[0][0][1], x[0][1][1], x[0][2][1], x[0][3][1], x[0][4][1]))
+    
     for i in range(len(ranks)):
         ordered = ordered + ranks[i]
     
     numberrank = []
+    ordered = list(reversed(ordered))
 
     for i in ordered:
         _ = 0
-        for j in range(len(i)):
-            if i[j][1] != h[j][1]:
+        for j in range(len(i[0])):
+            if (i[0][j][1] != h[0][j][1])|(i[1] != h[1]):
                 numberrank.append(ordered.index(i))
                 break
             else:
@@ -275,11 +276,24 @@ def showdown(hands):
                     numberrank.append(ordered.index(i) - 1)
                     break
         h = i
+    for i in range(len(numberrank)):
+        if max(numberrank) == 0:
+            num = 1
+        else:
+            num = max(numberrank)
+        numberrank[i] = abs(numberrank[i] - num)
+    numberrank = [j/num for j in numberrank]
 
-    return ordered[-1]
+    for i in range(len(ordered)):   
+        if numberrank[i] == 1:
+            winners.append(ordered[i])
+    
+    print(numberrank)
+    print(ordered)
+    return winners
 
 def handrankboard(hand, board):
-    h = (([(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)],0),[(0,0,0),(0,0,0)])
+    hnd = (([(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)],0),[(0,0,0),(0,0,0)])
     #TUPLE(TUPLE(best 5 card hand, rank),hole cards)
     ranks = [[],[],[],[],[],[],[],[],[],[]]
     ordered = []
@@ -306,37 +320,39 @@ def handrankboard(hand, board):
             j = (handranker(startingHands[i] + board), startingHands[i])
             hands.append(j)
         
-        for hand in hands:
-            if hand[0][1] == 0:
-                ranks[0].append((hand[0],hand[1]))
-            if hand[0][1] == 1:
-                ranks[1].append((hand[0],hand[1]))
-            if hand[0][1] == 2:
-                ranks[2].append((hand[0],hand[1]))
-            if hand[0][1] == 3:
-                ranks[3].append((hand[0],hand[1]))
-            if hand[0][1] == 4:
-                ranks[4].append((hand[0],hand[1]))
-            if hand[0][1] == 5:
-                ranks[5].append((hand[0],hand[1]))
-            if hand[0][1] == 6:
-                ranks[6].append((hand[0],hand[1]))
-            if hand[0][1] == 7:
-                ranks[7].append((hand[0],hand[1]))
-            if hand[0][1] == 8:
-                ranks[8].append((hand[0],hand[1]))
+        for h in hands:
+            if h[0][1] == 0:
+                ranks[0].append((h[0],h[1]))
+            if h[0][1] == 1:
+                ranks[1].append((h[0],h[1]))
+            if h[0][1] == 2:
+                ranks[2].append((h[0],h[1]))
+            if h[0][1] == 3:
+                ranks[3].append((h[0],h[1]))
+            if h[0][1] == 4:
+                ranks[4].append((h[0],h[1]))
+            if h[0][1] == 5:
+                ranks[5].append((h[0],h[1]))
+            if h[0][1] == 6:
+                ranks[6].append((h[0],h[1]))
+            if h[0][1] == 7:
+                ranks[7].append((h[0],h[1]))
+            if h[0][1] == 8:
+                ranks[8].append((h[0],h[1]))
+            if h[1] == hand:
+                hand = h
         for i in range(len(ranks)):
             ranks[i] = sorted(ranks[i], key = lambda x: (x[0][0][0][1], x[0][0][1][1], x[0][0][2][1], x[0][0][3][1], x[0][0][4][1]))
-        #print(ranks)
         for i in range(len(ranks)):
             ordered = ordered + ranks[i]
-        
+        ordered = list(reversed(ordered))
+
         numberrank = []
-    
         for i in ordered:
             _ = 0
+            
             for j in range(len(i[0][0])):
-                if i[0][0][j][1] != h[0][0][j][1]:
+                if i[0][0][j][1] != hnd[0][0][j][1]:
                     numberrank.append(ordered.index(i))
                     break
                 else:
@@ -345,20 +361,53 @@ def handrankboard(hand, board):
                         _ = 0
                         numberrank.append(numberrank[ordered.index(i) - 1])
                         break
-            h = i
-    
+            hnd = i
+
+        for i in range(len(numberrank)):
+            numberrank[i] = abs(numberrank[i] - max(numberrank))
+#        print(ordered)
+#        print(numberrank)
         ordered = pd.Series(ordered)
         numberrank = pd.Series(numberrank)
         numberrank = numberrank/max(numberrank)
-        
+
 #        numberrank = numberrank ** 3
-    
+
         dfranks = pd.concat([ordered, numberrank], axis = 1)
-        
-        return dfranks.loc[dfranks[0] == hand][1].values[0]
+
+        return (dfranks.loc[dfranks[0] == hand].get_values()[0][1])
     else:
         return 0# CODE FOR NO BOARD HOLECARDS GOES HERE
+  
+def draws(handd, boardd):
+    b = boardd
+    if boardd:
+        d = dk.Deck()
+        for j in range(len(handd)):
+            for i in d.deck:
+                if i in handd:
+                    d.deck.remove(i)
+        for j in range(len(boardd)):
+            for i in d.deck:
+                if i in boardd:
+                    d.deck.remove(i)
+    flushdraws = 0
+    straightdraws = 0
+    straightflushdraws = 0
+    for cardd in d.deck:
+        if handranker(b + handd)[1] <= 1:
+            c = [cardd]        
+            rank = handranker(b + handd + c)
+            if (rank[1] == 8) & ((handd[0] in rank[0])|(handd[1] in rank[0])):
+                straightflushdraws = straightflushdraws + 1
+            if rank[1] == 5:
+                flushdraws = flushdraws + 1
+            if rank[1] == 4:
+                straightdraws = straightdraws + 1
             
+    return (flushdraws, straightdraws, straightflushdraws)
+        
+                  
 def convert(cards):# 'string' --> ('string', int, int)
     convcards = []
     if cards:
@@ -389,47 +438,48 @@ def convert(cards):# 'string' --> ('string', int, int)
         
 
 
-deck1 = dk.Deck()          
-ranklist = []
-numdraw = 3
-iterations = 1000
+#deck1 = dk.Deck()          
+#ranklist = []
+#numdraw = 3
+#iterations = 1000
 
-showdownlist = []
-for i in range(0,iterations):
-    d = []
-    h = []
-    deck1.__init__()
-    h.append(deck1.deck.pop(51))
-    h.append(deck1.deck.pop(50))
-    deck1.shuffle()
-    deck1.draw(d,numdraw)
-    showdownlist.append(handranker(d+h))
-    ranklist.append(handranker(d+h)[1])
-print(h)
-print('drawing', numdraw, 'cards with', iterations,'samples')
+#showdownlist = []
+#for i in range(0,iterations):
+#    d = []
+#    h = []
+#    deck1.__init__()
+#    h.append(deck1.deck.pop(51))
+#    h.append(deck1.deck.pop(50))
+#    deck1.shuffle()
+#    deck1.draw(d,numdraw)
+#    showdownlist.append(handranker(d+h))
+#    ranklist.append(handranker(d+h)[1])
+#print(h)
+#print('drawing', numdraw, 'cards with', iterations,'samples')
 
-handdict = {
-        0: 'nothing',
-        1: 'pair',
-        2: 'two pair',
-        3: 'three of a kind',
-        4: 'straight',
-        5: 'flush',
-        6: 'full house',
-        7: 'quads',
-        8: 'straight flush'
-        }
+#handdict = {
+#        0: 'nothing',
+#        1: 'pair',
+#        2: 'two pair',
+#        3: 'three of a kind',
+#        4: 'straight',
+#        5: 'flush',
+#        6: 'full house',
+#        7: 'quads',
+#        8: 'straight flush'
+#        }
 
-ranklist = pd.Series(ranklist)
-tot = len(ranklist)
-ranklist = ranklist.value_counts()
-ranklist = pd.DataFrame(ranklist/tot)
-ranklist.rename(index = handdict, inplace = True)
+#ranklist = pd.Series(ranklist)
+#tot = len(ranklist)
+#ranklist = ranklist.value_counts()
+#ranklist = pd.DataFrame(ranklist/tot)
+#ranklist.rename(index = handdict, inplace = True)
 
-print(ranklist)
+#print(ranklist)
 
-hnd = [('3d', 3, 2), ('8d', 8, 2)]
-brd = [('8s', 8, 0), ('3c', 3, 3), ('Kc', 13, 3), ('Jh', 11, 1), ('2s', 2, 0)]
+hnd = [('Qs', 12, 0), ('Ah', 14, 1)]
+brd = [('Qc', 12, 3), ('4d', 4, 2), ('6h', 6, 1), ('Tc', 10, 3), ('As', 14, 0)]
 print('hole cards:', hnd)
 print('board:', brd)
-print(handrankboard(hnd, brd))
+print(handrankboard(hnd, brd) ** 2)
+print(draws(hnd, brd))

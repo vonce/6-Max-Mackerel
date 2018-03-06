@@ -7,30 +7,73 @@ Created on Thu Mar  1 14:21:22 2018
 """
 import pandas as pd
 import numpy as np
+import handrank as hr
 from sklearn.linear_model import Lasso
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures, FunctionTransformer, Imputer
 import matplotlib.pyplot as plt
+df = pd.read_csv('data.csv')
 
-print(df)
-df['hand strength ^4'] = df['hand strength'] ** 4
+#print(df['name'].value_counts())
+
+
+df['hand strength ^2'] = df['hand strength rv'] ** 2
+df['tot bets/stack'] = df['tot bets']/df['pf stack(bb)']
 df['log tot bets'] = np.log(df['tot bets'])
-#print(df.corr()['hand strength ^4'].sort_values())
+df['log tot bets/stack'] = np.log(df['tot bets/stack'])
+df['log tot agg'] = np.sqrt(df['tot agg'])
+#df['pf agg'] = np.sqrt(df['pf agg'])
+#df['rv agg'] = np.sqrt(df['rv agg'])
+#df['tr agg'] = np.sqrt(df['tr agg'])
+#df['fl agg'] = np.sqrt(df['fl agg'])
+#df['rv bets(bb)'] = np.sqrt(df['rv bets(bb)'])
+#df['tr bets(bb)'] = np.sqrt(df['tr bets(bb)'])
+#df['fl bets(bb)'] = np.sqrt(df['fl bets(bb)'])
+#df['pf bets(bb)'] = np.sqrt(df['pf bets(bb)'])
+#df['rv bets/pot'] = np.sqrt(df['rv bets/pot'])
+#df['tr bets/pot'] = np.sqrt(df['tr bets/pot'])
+#df['fl bets/pot'] = np.sqrt(df['fl bets/pot'])
 
-#print((df['hand strength ^4']).plot.hist())
-#print((df.plot.scatter(x = 'tot bets', y = 'hand strength ^4')))
-#print((np.log(df['tot bets'])).plot.hist())
+#print(df[df['hand strength ^2'] == 0])
+print(df.iloc[1032,:])
+print(df.iloc[1032,4])
 
-X = df.drop(['name','hand','board','hand strength','hand strength ^4'], axis = 1)
-y = df['hand strength ^4']
-print(X.columns)
-print(y)
+df2 = df
+df2 = df2[df2['street reached'] == 3]
+
+df = df[df['bluff river'] == 0]
+df = df[df['bluff turn'] == 0]
+#df = df[df['bluff flop'] == 0]
+df = df[df['street reached'] == 3]
+df = df[df['pf stack(bb)'] > 80]
+#df = df[df['straight draws flop'] == 0]
+#df = df[df['flush draws flop'] == 0]
+#df = df[df['straight draws turn'] == 0]
+#df = df[df['flush draws turn'] == 0]
+#print(df['bluff river'].value_counts())
+print(df.corr()['hand strength ^2'].sort_values())
+
+df['hand strength ^2'].plot.hist()
+#df['log tot bets'].plot.hist()
+ax = df2.plot.scatter(x = 'hand strength rv', y = 'tot bets/stack', color = 'red')
+df.plot.scatter(x = 'hand strength rv', y = 'tot bets/stack', color = 'blue', ax = ax)
+
+#X = df.drop(['filename','Unnamed: 0','street reached','name',
+#       'hand','board','hand strength fl','hand strength tr','hand strength rv',
+#       'hand strength ^2','bluff flop','bluff turn',
+#       'bluff river'], axis = 1)
+X = df[['log tot bets','log tot bets/stack','log tot agg',
+       'tot bets/stack','tot bets','rv bets(bb)','rv bets/pot',
+       'fl bets(bb)','fl bets/pot','tot agg','tr bets(bb)',
+       'tr bets/pot']]
+y = df['hand strength ^2']
+#print(X.columns)
+#print(y)
 X_train, X_test, y_train, y_test = train_test_split(X,y)
 ss = StandardScaler()
 lasso = Lasso()
-
 pipe = Pipeline([
     ('ss', ss),
     ('lasso', lasso)
@@ -44,3 +87,14 @@ gs.fit(X_train, y_train)
 print(gs.best_score_)
 print(gs.best_params_)
 print(gs.score(X_test, y_test))
+
+z = pd.DataFrame(gs.predict(X_test))
+z['test actual'] = list(y_test)
+
+#z[0] = np.sqrt(z[0])
+#z['test actual'] = np.sqrt(z['test actual'])
+z['diff'] = z[0] - z['test actual']
+print(np.median(np.abs(z['diff'])))
+print(z.sort_values(0))
+#z['diff'].plot.hist()
+#print(np.std(z['diff']))
