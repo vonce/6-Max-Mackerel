@@ -364,7 +364,7 @@ def handrankboard(hand, board):
             hnd = i
 
         for i in range(len(numberrank)):
-            numberrank[i] = abs(numberrank[i] - max(numberrank))
+            numberrank[i] = abs(numberrank[i] - len(numberrank))
 #        print(ordered)
 #        print(numberrank)
         ordered = pd.Series(ordered)
