@@ -41,7 +41,7 @@ for hand in startingHands:
 print(startingHandsTable)
 
 def startinghandsequity(hands, board = []):#LIST of hands
-    boardsfl = []
+    boards = []
     handranks = [0] * len(hands)
     wins = [0] * len(hands)
     #print(wins)
@@ -52,22 +52,32 @@ def startinghandsequity(hands, board = []):#LIST of hands
                 if i in h:
                     d.deck.remove(i)
 
-#    print(d.deck)
-    boardsfl += itertools.combinations(d.deck, 3)
-    boardsfl = [list(i) for i in boardsfl]
-#    boardstr += itertools.combinations(d.deck, 4)
-#    boardsrv += itertools.combinations(d.deck, 5)
-#    print(boardsfl)
-    for b in boardsfl:
-        for i in range(len(hands)):
-            handranks[i] = hr.handranker(hands[i] + b)
-            
-        for i in range(len(handranks)):
-            #print(hr.showdown(handranks))
-            if handranks[i] in hr.showdown(handranks):
-                wins[i] = wins[i] + 1
-    #print(wins)
-    wins = [i/len(boardsfl) for i in wins]
-    print(wins)
+    if board == []:
+        boards += itertools.combinations(d.deck, 3)
+        boards = [list(i) for i in boards]
+
+        for b in boards:
+            for i in range(len(hands)):
+                handranks[i] = hr.handranker(hands[i] + b)
+                
+            for i in range(len(handranks)):
+                #print(hr.showdown(handranks))
+                if handranks[i] in hr.showdown(handranks):
+                    wins[i] = wins[i] + 1
+    if board != []:
+        boardlen = len(board)
         
-startinghandsequity([[('As', 14, 0), ('Qs', 12, 0)],[('Ah', 14, 1),('Jh', 11, 1)],[('8s', 8, 0),('9s', 9, 0)]])
+        boards += itertools.combinations(d.deck, 5 - boardlen)
+        boards = [list(i) for i in boards]
+
+        for b in boards:
+            for i in range(len(hands)):
+                handranks[i] = hr.handranker(hands[i] + board + b)
+                
+            for i in range(len(handranks)):
+                #print(hr.showdown(handranks))
+                if handranks[i] in hr.showdown(handranks):
+                    wins[i] = wins[i] + 1
+    #print(wins)
+    wins = [i/len(boards) for i in wins]
+    print(wins)

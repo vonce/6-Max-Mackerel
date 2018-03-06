@@ -5,7 +5,8 @@ Created on Tue Feb 20 15:50:33 2018
 
 @author: Vince
 """
-
+import itertools
+import timeit
 class Player(object):
     name = ''
     hand = []
@@ -20,3 +21,17 @@ class Player(object):
 #    def betraise(self, n):
         
 #    def call(self):
+def long(n):
+    j = []
+    for i in itertools.permutations(np.arange(0,n),4):
+        j.append(i)
+    return j
+
+
+start = timeit.default_timer()
+
+print(len(long(60)))
+
+stop = timeit.default_timer()
+
+print(stop - start)

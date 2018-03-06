@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 import handrank as hr
 import os
-
+import timeit
 
 def extract(txt):
     filename = txt
@@ -37,10 +37,8 @@ def extract(txt):
             games.append(game)
 
     df = []
-    count = 0
     vpippfrplayers = []
 
-    totopt = []
     vpip = []
     pfr = []
     for game in allgames:
@@ -70,8 +68,6 @@ def extract(txt):
     vpippfrdf['vpip'] = vpippfrdf['tot put in pot']/vpippfrdf['tot option']
     vpippfrdf['pfr'] = vpippfrdf['tot preflop raise']/vpippfrdf['tot option']
     for game in games:
-        count = count + 1
-        print('game', count)
         names = re.findall('Player\s(.*?)\sshows:', game)
         cards = re.findall('Player\s.*?\sshows:.+\[(.*?)\]', game)
         actions = []
@@ -90,7 +86,7 @@ def extract(txt):
     
         bigblind = float(re.search('Game ID:\s.+\/([\d.]+)\s', game).group(1))   
         stacks = []
-        pot = round(sum([float(i) for i in re.findall('\(([\d.]+)\)[^.][^r]', game)]), 2)
+        
         pfpot = 0.0
         flpot = 0.0
         trpot = 0.0
@@ -150,7 +146,7 @@ def extract(txt):
             rvstring = game[(game.index('*** RIVER ***')+len('*** RIVER ***')):game.index('------ Summary ------')]
             if re.findall('Player\s(.+)\s', rvstring) != []:
                 streetreached = 3
-            foldplayersrv = re.findall('Player\s(.+)\sfolds', rvstring)
+            
             rvpot = round(trpot + sum([float(i) for i in re.findall('\(([\d.]+)\)[^.]', rvstring)]), 2)
             playersrv = list(playerstr)
             for player in playerstr:
@@ -339,10 +335,12 @@ def extract(txt):
 
 alldata = []
 for filename in os.listdir('data'):
+    start = timeit.default_timer()
     if filename.endswith('.txt'): 
         print('reading:' + filename)
         alldata.append(extract('data/' + filename))
-
+        stop = timeit.default_timer()
+        print('Done reading' + filename + 'in' +(start-stop) + 's')
 alldata = pd.concat(alldata)
 alldata.to_csv('data.csv')
 

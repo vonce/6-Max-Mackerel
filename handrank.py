@@ -292,7 +292,7 @@ def showdown(hands):
     #print(ordered)
     return winners
 
-def handrankboard(hand, board):
+def handrankboard(hand = [], board = []):
     hnd = (([(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)],0),[(0,0,0),(0,0,0)])
     #TUPLE(TUPLE(best 5 card hand, rank),hole cards)
     ranks = [[],[],[],[],[],[],[],[],[],[]]
@@ -313,7 +313,8 @@ def handrankboard(hand, board):
         startingHands += itertools.combinations(d.deck, 2)
         for i in range(len(startingHands)):
             startingHands[i] = sorted(startingHands[i], key = lambda x: x[1], reverse = True)
-        startingHands.append(hand)
+        if hand:
+            startingHands.append(hand)
         hands = []
         for i in range(len(startingHands)):
             startingHands[i] = list(startingHands[i])
@@ -375,7 +376,10 @@ def handrankboard(hand, board):
 
         dfranks = pd.concat([ordered, numberrank], axis = 1)
 
-        return (dfranks.loc[dfranks[0] == hand].get_values()[0][1])
+        if hand:
+            return (dfranks.loc[dfranks[0] == hand].get_values()[0][1])
+        else:
+            return dfranks
     else:
         return 0# CODE FOR NO BOARD HOLECARDS GOES HERE
   
@@ -407,6 +411,27 @@ def draws(handd, boardd):
             
     return (flushdraws, straightdraws, straightflushdraws)
         
+def boardtexture(boardtext):
+    avgrankdiff = []
+    if boardtext:
+        d = dk.Deck()
+        for j in range(len(boardtext)):
+            for i in d.deck:
+                if i in boardtext:
+                    d.deck.remove(i)
+        for card in d.deck:
+            df = handrankboard(board = boardtext)
+            df2 = handrankboard(board = boardtext + [card])
+            df[0] = [tuple(i[1]) for i in df[0]]
+            df.columns = ['cards', 'rank']
+            df2[0] = [tuple(i[1]) for i in df2[0]]
+            df2.columns = ['cards', 'rank2']
+            df = df.merge(df2, on = 'cards')
+            df['rankdiff'] = (df['rank'] - df['rank2']) ** 2
+            avgrankdiff.append(np.mean(df['rankdiff']))
+        staticdynamic = np.mean(avgrankdiff)
+    return staticdynamic
+    
                   
 def convert(cards):# 'string' --> ('string', int, int)
     convcards = []
@@ -436,7 +461,7 @@ def convert(cards):# 'string' --> ('string', int, int)
         return convcards
 
         
-
+print(boardtexture([('Ks', 13, 0), ('3c', 3, 3), ('8h', 8, 1)]))
 
 #deck1 = dk.Deck()          
 #ranklist = []

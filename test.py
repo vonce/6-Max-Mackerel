@@ -93,5 +93,6 @@ z['test actual'] = list(y_test)
 #z['test actual'] = np.sqrt(z['test actual'])
 z['diff'] = z[0] - z['test actual']
 print(np.median(np.abs(z['diff'])))
+print(z)
 #z['diff'].plot.hist()
-#print(np.std(z['diff']))
+print(np.std(z['diff']))
