@@ -17,8 +17,8 @@ import matplotlib.pyplot as plt
 df = pd.read_csv('data.csv')
 
 #print(df['name'].value_counts())
-
-
+print(df['board'].dtypes)
+#df['board texture'] = df['board'].apply(hr.boardtexture)
 df['hand strength ^2'] = df['hand strength rv'] ** 2
 df['tot bets/stack'] = df['tot bets']/df['pf stack(bb)']
 df['log tot bets'] = np.log(df['tot bets'])
@@ -42,7 +42,7 @@ df2 = df
 df2 = df2[df2['street reached'] == 3]
 df = df.dropna(axis = 0)
 df = df[df['bluff river'] == 0]
-df = df[df['bluff turn'] == 0]
+#df = df[df['bluff turn'] == 0]
 #df = df[df['bluff flop'] == 0]
 df = df[df['street reached'] == 3]
 #df = df[df['pf stack(bb)'] > 80]
@@ -55,8 +55,8 @@ print(df.corr()['hand strength ^2'].sort_values())
 print(df[df['hand strength rv'].isnull()]['hand strength rv'])
 df['hand strength ^2'].plot.hist()
 #df['log tot bets'].plot.hist()
-ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', color = 'red')
-df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', color = 'blue', ax = ax)
+ax = df2.plot.scatter(x = 'hand strength rv', y = 'tot bets/stack', color = 'red')
+df.plot.scatter(x = 'hand strength rv', y = 'tot bets/stack', color = 'blue', ax = ax)
 
 #X = df.drop(['filename','Unnamed: 0','street reached','name',
 #       'hand','board','hand strength fl','hand strength tr','hand strength rv',

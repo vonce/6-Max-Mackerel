@@ -83,7 +83,7 @@ def extract(txt):
             cards[i] = cards[i].split(' ')
             cards[i] = hr.convert(cards[i])
             
-    
+        boardtext = hr.boardtexture(board[:3])
         bigblind = float(re.search('Game ID:\s.+\/([\d.]+)\s', game).group(1))   
         stacks = []
         
@@ -226,6 +226,7 @@ def extract(txt):
                     pfr,#pfr
                     cards[i],#hand[(str),(str)]
                     board,#board[strings]
+                    boardtext, #board texture
                     round(stacks/bigblind, 2),#preflop stack in bigblinds
                     plpf,# #players preflop
                     playerspf.index(names[i]),#player's position preflop, 0 is button
@@ -282,6 +283,7 @@ def extract(txt):
             'pfr',#pfr
            'hand', #hand[(str),(str)]
            'board',#board[strings]
+           'board texture', # board texture
            'pf stack(bb)',#preflop stack in big blinds
            '#pl pf',# #players preflop
            'position pf',#player's position preflop, 0 is button
@@ -334,13 +336,18 @@ def extract(txt):
     return df
 
 alldata = []
+time = 0.0
 for filename in os.listdir('data'):
     start = timeit.default_timer()
     if filename.endswith('.txt'): 
         print('reading:' + filename)
         alldata.append(extract('data/' + filename))
         stop = timeit.default_timer()
-        print('Done reading' + filename + 'in' +(start-stop) + 's')
+        print('Done reading', filename, 'in',round(stop - start, 2), 'sec.')
+        time = time + round(stop - start, 2)
+        print('Total elapsed:', time, 'sec.\n')
+    print('DONE!')
+        
 alldata = pd.concat(alldata)
 alldata.to_csv('data.csv')
 

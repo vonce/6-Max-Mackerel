@@ -460,14 +460,11 @@ def convert(cards):# 'string' --> ('string', int, int)
             convcards.append((card, int(val), int(suit)))
         return convcards
 
-        
-print(boardtexture([('Ks', 13, 0), ('3c', 3, 3), ('8h', 8, 1)]))
-
 #deck1 = dk.Deck()          
 #ranklist = []
 #numdraw = 3
 #iterations = 1000
-
+#print(boardtexture([('Jh', 11, 1), ('Ts', 10, 0), ('As', 14, 0)]))
 #showdownlist = []
 #for i in range(0,iterations):
 #    d = []
@@ -502,9 +499,9 @@ print(boardtexture([('Ks', 13, 0), ('3c', 3, 3), ('8h', 8, 1)]))
 
 #print(ranklist)
 
-hnd = [('Ac', 14, 3), ('Ah', 14, 1)]
-brd = [('Qc', 12, 3), ('4d', 4, 2), ('6h', 6, 1), ('Tc', 10, 3), ('As', 14, 0)]
-print('hole cards:', hnd)
-print('board:', brd)
-print(handrankboard(hnd, brd) ** 2)
-print(draws(hnd, brd))
+#hnd = [('Ac', 14, 3), ('Ah', 14, 1)]
+#brd = [('Qc', 12, 3), ('4d', 4, 2), ('6h', 6, 1), ('Tc', 10, 3), ('As', 14, 0)]
+#print('hole cards:', hnd)
+#print('board:', brd)
+#print(handrankboard(hnd, brd) ** 2)
+#print(draws(hnd, brd))
