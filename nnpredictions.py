@@ -13,6 +13,7 @@ from keras.layers.core import Dense
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
 
 df = pd.read_csv('data.csv')
 
@@ -75,15 +76,15 @@ X_train = ss.fit_transform(X_train)
 X_test = ss.transform(X_test)
 print(X.shape)
 model = Sequential()
-model.add(Dense(50, input_dim = 46, activation = 'hard_sigmoid'))
-model.add(Dense(30, activation = 'hard_sigmoid'))
-model.add(Dense(10, activation = 'hard_sigmoid'))
+model.add(Dense(100, input_dim = 40, activation = 'sigmoid'))
+model.add(Dense(50, activation = 'sigmoid'))
+
 
 model.add(Dense(1))
 
 model.compile(loss = 'mean_squared_error', optimizer = 'adam')
 
-history = model.fit(X_train, y_train, validation_data = (X_test, y_test), epochs = 100)
+history = model.fit(X_train, y_train, validation_data = (X_test, y_test), epochs = 20)
 
 plt.figure(figsize = (10,10))
 plt.plot(history.history['loss'], label = 'Training Loss')
@@ -96,8 +97,10 @@ z['test actual'] = list(y_test)
 z[0] = np.sqrt(z[0])
 z['test actual'] = np.sqrt(z['test actual'])
 z['diff'] = z[0] - z['test actual']
-print(np.median(np.abs(z['diff'])))
-z['diff'] = np.abs(z['diff'])
+print(np.mean(np.abs(z['diff'])))
 print(z.sort_values('diff').values)
-#z['diff'].plot.hist()
+print(z)
+
+plt.figure(figsize = (7,7))
+z['diff'].plot.hist()
 #print(np.std(z['diff']))

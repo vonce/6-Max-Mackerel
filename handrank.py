@@ -464,7 +464,7 @@ def convert(cards):# 'string' --> ('string', int, int)
 #ranklist = []
 #numdraw = 3
 #iterations = 1000
-#print(boardtexture([('Jh', 11, 1), ('Ts', 10, 0), ('As', 14, 0)]))
+
 #showdownlist = []
 #for i in range(0,iterations):
 #    d = []

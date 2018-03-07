@@ -78,12 +78,14 @@ def extract(txt):
             board = board.replace('10','T')
             board = board.split(' ')
             board = hr.convert(board)
+            #boardtextfl = hr.boardtexture(board[:3])
+            #boardtexttr = hr.boardtexture(board[:4])
         for i in range(len(cards)):
             cards[i] = cards[i].replace('10','T')
             cards[i] = cards[i].split(' ')
             cards[i] = hr.convert(cards[i])
             
-        boardtext = hr.boardtexture(board[:3])
+        
         bigblind = float(re.search('Game ID:\s.+\/([\d.]+)\s', game).group(1))   
         stacks = []
         
@@ -168,10 +170,10 @@ def extract(txt):
                     handstrengthrv = hr.handrankboard(cards[i], board)
                 if len(board) >= 4:    
                     handstrengthtr = hr.handrankboard(cards[i], board[:4])
-                    drawstr = hr.draws(cards[i], board[:4])
+                    #drawstr = hr.draws(cards[i], board[:4])
                 if len(board) >= 3:    
                     handstrengthfl = hr.handrankboard(cards[i], board[:3])
-                    drawsfl = hr.draws(cards[i], board[:3])
+                    #drawsfl = hr.draws(cards[i], board[:3])
             stacks = float(re.search(names[i] + '\s\((.*?)\)', game).group(1))   
             actions = re.findall(names[i] + '\s(.+)\s\(([\d\.]+)\)|' + names[i] + '\s(checks)|\*\*\*\s(\w+)\s\*\*\*|--\s(Summary)\s--|Uncalled\sbet\s\(([\d\.]+)\)\sreturned\sto\s' + names[i], game)
             bets = 0.0
@@ -226,7 +228,8 @@ def extract(txt):
                     pfr,#pfr
                     cards[i],#hand[(str),(str)]
                     board,#board[strings]
-                    boardtext, #board texture
+                    #boardtextfl, #board texture fl
+                    #boardtexttr, # board texture tr
                     round(stacks/bigblind, 2),#preflop stack in bigblinds
                     plpf,# #players preflop
                     playerspf.index(names[i]),#player's position preflop, 0 is button
@@ -244,9 +247,6 @@ def extract(txt):
                     round((stacks - allbets[0] - allbets[1])/flpot, 2),#stack/flop pot
                     handstrengthfl,# hand strength flop
                     blufffl, # bluff flop
-                    drawsfl[0], #flush draws flop
-                    drawsfl[1], #straight draws flop
-                    drawsfl[2], #straight flush draws flop
                     round((stacks - allbets[0] - allbets[1])/bigblind, 2),# stack GOING INTO turn
                     pltr,# # players GOING INTO turn
                     playerstr.index(names[i]),# position turn
@@ -257,9 +257,6 @@ def extract(txt):
                     round((stacks - allbets[0] - allbets[1] - allbets[2])/trpot, 2),#stack/turn pot
                     handstrengthtr,# hand strength turn
                     blufftr, #bluff turn
-                    drawstr[0], #flush draws turn
-                    drawstr[1], #straight draws turn
-                    drawstr[2], #straight flush draws turn
                     round((stacks - allbets[0] - allbets[1] - allbets[2])/bigblind, 2),# stack GOING INTO river
                     plrv,# # players GOING INTO river
                     playersrv.index(names[i]),# position river
@@ -283,7 +280,8 @@ def extract(txt):
             'pfr',#pfr
            'hand', #hand[(str),(str)]
            'board',#board[strings]
-           'board texture', # board texture
+           #'board texture flop', # board texture flop
+           #'board texture turn', # board texture turn
            'pf stack(bb)',#preflop stack in big blinds
            '#pl pf',# #players preflop
            'position pf',#player's position preflop, 0 is button
@@ -301,9 +299,6 @@ def extract(txt):
            'stack/flpot',# stack/flop pot
            'hand strength fl',# hand strength flop
            'bluff flop',# bluff flop
-           'flush draws flop',#flush draws flop
-           'straight draws flop',#straight draws flop
-           'straight flush draws flop',
            'tr stack(bb)',# stack GOING INTO turn
            '#pl tr',# # players GOING INTO turn
            'position tr',# position turn
@@ -314,9 +309,6 @@ def extract(txt):
            'stack/trpot',# stack/turn pot
            'hand strength tr',# hand strength turn
            'bluff turn',# bluff turn
-           'flush draws turn',#flush draws flop
-           'straight draws turn',#straight draws flop  
-           'straight flush draws turn',
            'rv stack(bb)',#stack GOING INTO river
            '#pl rv',# # players GOING INTO river
            'position rv',# position river
@@ -344,9 +336,9 @@ for filename in os.listdir('data'):
         alldata.append(extract('data/' + filename))
         stop = timeit.default_timer()
         print('Done reading', filename, 'in',round(stop - start, 2), 'sec.')
-        time = time + round(stop - start, 2)
+        time = round(time + stop - start, 2)
         print('Total elapsed:', time, 'sec.\n')
-    print('DONE!')
+print('DONE!')
         
 alldata = pd.concat(alldata)
 alldata.to_csv('data.csv')
