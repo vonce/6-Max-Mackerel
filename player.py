@@ -20,3 +20,4 @@ class Player(object):
 #    def betraise(self, n):
         
 #    def call(self):
+#print(x)

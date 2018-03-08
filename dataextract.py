@@ -13,7 +13,7 @@ import handrank as hr
 import os
 import timeit
 
-def extract(txt):
+def extract(txt):# extracts text from Winning Poker Network datamined data.
     filename = txt
     file = open(txt)
     

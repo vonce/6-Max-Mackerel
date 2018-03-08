@@ -9,54 +9,72 @@ import itertools
 import deck as dk
 import pandas as pd
 import numpy as np
+import bitarray as ba
 
-def quads(hand):
-    _ = []
-    for card in hand:
-        _.append(card[1])
-    _.sort(reverse = True)
-    j = 0
-    k = 0
-    for i in _:
-        if i == _[j-1]:
-            k = k+1
-            if k == 3:
-                while i in _:
-                    _.remove(i)
-                return i
-        else:
-            k = 0
-        j = j+1
+def cardstobitarr(cards):# turns list of cards(strings) to 52 bit array
+    bitarr = ba.bitarray('0' * 52)
+    for n in [dk.d.cardtonumdict[card] for card in cards]:
+        bitarr[n] = True
+    return bitarr
+
+def bitarrtocards(bitarr):# turns 52 bit array to list of cards(strings)
+    cards = bitarr.search(ba.bitarray('1'))
+    cards = [dk.d.numtocarddict[num] for num in cards]
+    return cards
+
+def straightflush(bitarr):# Assess hand for straight flush, returns 5 card hand in bit array
+    cardlist = (bitarr.search(ba.bitarray('1')))
+    h = ba.bitarray('0' * 52)
+    print(bitarr)
+    for i in cardlist:
+        if (bitarr[i:i+17:4] == ba.bitarray('11111')):
+            h[i:i+17:4] = True
+            return h
+        elif ((36<=_) & (_<40)) & (bitarr[i:i+17:4] == ba.bitarray('1111')) & (bitarr[i % 4] == True):#Special 'wheel' case
+            h[i:i+17:4] = True
+            h[i%4] = True
+            return h
     return False
 
-def fullhouse(hand):
-    _ = []
-    for card in hand:
-        _.append(card[1])
-    _.sort(reverse = True)
-    j = 0
-    k = 0
-    for i in _:
-        if i == _[j-1]:
-            k = k+1
-            if k == 2:
-                while i in _:
-                    _.remove(i)
-                    house = i
-                k = 0
-                j = 0
-                for l in _:
-                    if l == _[j-1]:
-                        fullof = l
-                        return house, fullof
-                    j = j+1
-                return False
-        else:
-            k = 0
-        j = j+1
-    return False        
+def quads(bitarr):# Assess hand for quads, returns 5 card hand in bit array
+    cardlist = (bitarr.search(ba.bitarray('1')))
+    h = ba.bitarray('0' * 52)
+    for i in cardlist:
+        if (i % 4 == 0) & (bitarr[_:_+4] == ba.bitarray('1111')):
+            h[i:i+4] = True
+            for j in cardlist:
+                if h[j] == False:
+                    h[j] = True
+                    break
+            return h
+    return False
 
-def pair(hand):
+def fullhouse(bitarr):# Assess hand for fullhouse, returns 5 card hand in bit array
+    cardlist = (bitarr.search(ba.bitarray('1')))
+    h = ba.bitarray('0' * 52)
+    for i in cardlist:
+        j = i - i % 4
+        if bitarr[j:j+4].count() >= 3:
+            h[j:j+4] = bitarr[j:j+4]
+            break
+    for i in cardlist:
+        k = i - i % 4
+        if (bitarr[k:k+4].count() >= 2) & (k != j):
+            if (bitarr[k:k+4].count() == 2):
+                h[k:k+4] = bitarr[k:k+4]
+            elif (bitarr[k:k+3].count() == 2):                
+                h[k:k+3] = bitarr[k:k+3]
+            elif (bitarr[k:k+2].count() == 2):                
+                h[k:k+2] = bitarr[k:k+2]
+            break
+    if h.count() >= 5:
+        return h
+    else:
+        return False
+        
+print(bitarrtocards(fullhouse(cardstobitarr(['7s', '7h', '6d', '6s', '6h', '7c', '3s']))))
+
+def pair(hand):# Assess hand for pair, returns pair value
     _ = []
     for card in hand:
         _.append(card[1])
@@ -68,7 +86,7 @@ def pair(hand):
         j = j+1
     return False
 
-def twopair(hand):
+def twopair(hand):# Assess hand for two pair, returns high pair then low pair
     _ = []
     for card in hand:
         _.append(card[1])
@@ -89,7 +107,7 @@ def twopair(hand):
         j = j+1
     return False
 
-def threekind(hand):
+def threekind(hand):# Assess hand for three of a kind, returns trips value
     _ = []
     for card in hand:
         _.append(card[1])
@@ -106,7 +124,7 @@ def threekind(hand):
         j = j+1
     return False        
 
-def flush(hand):
+def flush(hand):# Assess hand for flush, returns high flush card
     _ = []
     for card in hand:
         _.append(card[2])
@@ -119,7 +137,7 @@ def flush(hand):
                 return True
     return False
             
-def straight(hand):
+def straight(hand):# Assess hand for straight, returns straight to value
     _ = []
     for card in hand:
         _.append(card[1])
@@ -142,14 +160,8 @@ def straight(hand):
         j = j+1
     return False
     
-def straightflush(hand):
-    if (straight(hand) != False) & (flush(hand) != False):
-        return straight(hand)
-    else:
-        return False
-    
 
-def handranker(hand):
+def handranker(hand):# takes 5-7 cards and iterates through all possible 5 card combos and finds the highest hand with 0-8 rank
     rank = 0
     bestrank = 0
     h = ([(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)],0)
@@ -230,7 +242,7 @@ def handranker(hand):
                     break
     return h
 
-def showdown(hands):
+def showdown(hands):# takes hands with rank generated by handranker to find winners
     winners = []
     h = ([(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)],0)
     ranks = [[],[],[],[],[],[],[],[],[],[]]
@@ -292,7 +304,7 @@ def showdown(hands):
     #print(ordered)
     return winners
 
-def handrankboard(hand = [], board = []):
+def handrankboard(hand = [], board = []):#takes a 2 card hand and a board and ranks it compared to all other 2 card hands against the board, ranking from 0-1
     hnd = (([(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)],0),[(0,0,0),(0,0,0)])
     #TUPLE(TUPLE(best 5 card hand, rank),hole cards)
     ranks = [[],[],[],[],[],[],[],[],[],[]]
@@ -383,7 +395,7 @@ def handrankboard(hand = [], board = []):
     else:
         return 0# CODE FOR NO BOARD HOLECARDS GOES HERE
   
-def draws(handd, boardd):
+def draws(handd, boardd):# counts draws, may be replaced?
     b = boardd
     if boardd:
         d = dk.Deck()
@@ -411,7 +423,7 @@ def draws(handd, boardd):
             
     return (flushdraws, straightdraws, straightflushdraws)
         
-def boardtexture(boardtext):
+def boardtexture(boardtext):# SLOW. created technique to find board texture static - dynamic
     avgrankdiff = []
     if boardtext:
         d = dk.Deck()
@@ -433,7 +445,7 @@ def boardtexture(boardtext):
     return staticdynamic
     
                   
-def convert(cards):# 'string' --> ('string', int, int)
+def convert(cards):# 'card string' --> ('card string', int, int) card notation
     convcards = []
     if cards:
         for card in cards:

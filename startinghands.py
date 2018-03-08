@@ -53,7 +53,7 @@ def startinghandsequity(hands, board = []):#LIST of hands
                     d.deck.remove(i)
 
     if board == []:
-        boards += itertools.combinations(d.deck, 3)
+        boards += itertools.combinations(d.deck, 4)
         boards = [list(i) for i in boards]
 
         for b in boards:
@@ -81,3 +81,4 @@ def startinghandsequity(hands, board = []):#LIST of hands
     #print(wins)
     wins = [i/len(boards) for i in wins]
     print(wins)
+print(startinghandsequity([[('As', 14, 0), ('Js', 11, 0)], [('Qd', 12, 2), ('Qh', 12, 1)]]))
