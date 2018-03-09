@@ -77,15 +77,12 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
             board = board.group(1)
             board = board.replace('10','T')
             board = board.split(' ')
-            board = hr.convert(board)
             #boardtextfl = hr.boardtexture(board[:3])
             #boardtexttr = hr.boardtexture(board[:4])
         for i in range(len(cards)):
             cards[i] = cards[i].replace('10','T')
             cards[i] = cards[i].split(' ')
-            cards[i] = hr.convert(cards[i])
-            
-        
+                  
         bigblind = float(re.search('Game ID:\s.+\/([\d.]+)\s', game).group(1))   
         stacks = []
         
@@ -166,14 +163,17 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
             pfr = float(vpippfrdf.loc[vpippfrdf['name'] == names[i], 'pfr'].get_values())
             
             if board:
+                strt = timeit.default_timer()
                 if len(board) == 5:    
-                    handstrengthrv = hr.handrankboard(cards[i], board)
+                    handstrengthrv = hr.handpercentile(hr.cardstobit(cards[i]), hr.cardstobit(board))
                 if len(board) >= 4:    
-                    handstrengthtr = hr.handrankboard(cards[i], board[:4])
+                    handstrengthtr = hr.handpercentile(hr.cardstobit(cards[i]), hr.cardstobit(board[:4]))
                     #drawstr = hr.draws(cards[i], board[:4])
                 if len(board) >= 3:    
-                    handstrengthfl = hr.handrankboard(cards[i], board[:3])
+                    handstrengthfl = hr.handpercentile(hr.cardstobit(cards[i]), hr.cardstobit(board[:3]))
                     #drawsfl = hr.draws(cards[i], board[:3])
+                stp = timeit.default_timer()
+                print(stp - strt)
             stacks = float(re.search(names[i] + '\s\((.*?)\)', game).group(1))   
             actions = re.findall(names[i] + '\s(.+)\s\(([\d\.]+)\)|' + names[i] + '\s(checks)|\*\*\*\s(\w+)\s\*\*\*|--\s(Summary)\s--|Uncalled\sbet\s\(([\d\.]+)\)\sreturned\sto\s' + names[i], game)
             bets = 0.0
