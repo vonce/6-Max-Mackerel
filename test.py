@@ -8,6 +8,7 @@ Created on Thu Mar  1 14:21:22 2018
 import pandas as pd
 import numpy as np
 import handrank as hr
+from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.linear_model import Lasso
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -55,8 +56,8 @@ print(df.corr()['hand strength ^2'].sort_values())
 print(df[df['hand strength rv'].isnull()]['hand strength rv'])
 df['hand strength ^2'].plot.hist()
 #df['log tot bets'].plot.hist()
-ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', color = 'red')
-df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', color = 'blue', ax = ax)
+ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets', color = 'red')
+df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets', color = 'blue', ax = ax)
 
 #X = df.drop(['filename','Unnamed: 0','street reached','name',
 #       'hand','board','hand strength fl','hand strength tr','hand strength rv',
@@ -71,13 +72,13 @@ y = df['hand strength ^2']
 #print(y)
 X_train, X_test, y_train, y_test = train_test_split(X,y)
 ss = StandardScaler()
-lasso = Lasso()
+gbr = GradientBoostingRegressor()
 pipe = Pipeline([
     ('ss', ss),
-    ('lasso', lasso)
+    ('gbr', gbr)
 ])
 params = {
-        'lasso__alpha': np.arange(.01,.05,.25)
+        
 }
 gs = GridSearchCV(pipe, param_grid = params)
 gs.fit(X_train, y_train)
