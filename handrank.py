@@ -4,7 +4,8 @@ Created on Thu Feb  1 20:16:39 2018
 
 @author: Vince
 """
-
+#OUTDATED
+#I have written most of these in java now and it is much faster
 import itertools
 import deck as dk
 import pandas as pd

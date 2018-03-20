@@ -5,13 +5,15 @@ Created on Tue Feb 27 11:57:57 2018
 
 @author: Vince
 """
-
+import os
+os.environ['JAVA_HOME'] = "/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home"#type which java in terminal and paste here
+os.environ['CLASSPATH'] = "./Flounder.jar"
+from jnius import autoclass
 import re
 import pandas as pd
-import numpy as np
-import handrank as hr
-import os
 import timeit
+
+calculate = autoclass("flounder.Calculate")
 
 def extract(txt):# extracts text from Winning Poker Network datamined data.
     filename = txt
@@ -163,17 +165,14 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
             pfr = float(vpippfrdf.loc[vpippfrdf['name'] == names[i], 'pfr'].get_values())
             
             if board:
-                strt = timeit.default_timer()
                 if len(board) == 5:    
-                    handstrengthrv = hr.handpercentile(hr.cardstobit(cards[i]), hr.cardstobit(board))
+                    handstrengthrv = calculate.handpercentile(cards[i], board)
                 if len(board) >= 4:    
-                    handstrengthtr = hr.handpercentile(hr.cardstobit(cards[i]), hr.cardstobit(board[:4]))
+                    handstrengthtr = calculate.handpercentile(cards[i], board[:4])
                     #drawstr = hr.draws(cards[i], board[:4])
                 if len(board) >= 3:    
-                    handstrengthfl = hr.handpercentile(hr.cardstobit(cards[i]), hr.cardstobit(board[:3]))
+                    handstrengthfl = calculate.handpercentile(cards[i], board[:3])
                     #drawsfl = hr.draws(cards[i], board[:3])
-                stp = timeit.default_timer()
-                print(stp - strt)
             stacks = float(re.search(names[i] + '\s\((.*?)\)', game).group(1))   
             actions = re.findall(names[i] + '\s(.+)\s\(([\d\.]+)\)|' + names[i] + '\s(checks)|\*\*\*\s(\w+)\s\*\*\*|--\s(Summary)\s--|Uncalled\sbet\s\(([\d\.]+)\)\sreturned\sto\s' + names[i], game)
             bets = 0.0

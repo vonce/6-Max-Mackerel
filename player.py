@@ -15,9 +15,23 @@ class Player(object):
         self.name = name
         self.stack = stack
         self.hand = hand
-#    def checkfold(self):
-    
-#    def betraise(self, n):
-        
-#    def call(self):
+    def action(self, origbetbehind = 0.0):
+        print(self.name, 'action: ', 'check/fold', 'bet/raise', 'call?')
+        act = ''
+        betamt = 0.0
+        while (act != 'check/fold') & (act != 'bet/raise') & (act != 'call'):
+            act = input(':')
+        if act == ('bet/raise'):
+            while (betamt > self.stack) | (betamt < 2.0) | ((origbetbehind != 0.0) & (betamt < origbetbehind * 2)):
+                betamt = float(input('amount:'))
+                if betamt > self.stack:
+                    print('stack too small')
+                if betamt < 2.0:
+                    print('min bet is at least a big blind')
+                if (origbetbehind != 0.0) & (betamt < origbetbehind * 2):
+                    print('raise must be at least double original bet')
+
+
+
+
 #print(x)
