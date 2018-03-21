@@ -165,6 +165,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
             pfr = float(vpippfrdf.loc[vpippfrdf['name'] == names[i], 'pfr'].get_values())
             
             if board:
+                print('done')
                 if len(board) == 5:    
                     handstrengthrv = calculate.handpercentile(cards[i], board)
                 if len(board) >= 4:    

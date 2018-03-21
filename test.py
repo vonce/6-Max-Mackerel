@@ -8,7 +8,7 @@ Created on Thu Mar  1 14:21:22 2018
 import pandas as pd
 import numpy as np
 import handrank as hr
-from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 from sklearn.linear_model import Lasso
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -73,9 +73,10 @@ y = df['hand strength ^2']
 X_train, X_test, y_train, y_test = train_test_split(X,y)
 ss = StandardScaler()
 gbr = GradientBoostingRegressor()
+rfr = RandomForestRegressor()
 pipe = Pipeline([
     ('ss', ss),
-    ('gbr', gbr)
+    ('rfr', rfr)
 ])
 params = {
         
