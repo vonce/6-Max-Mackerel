@@ -21,7 +21,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
     
     lines = file.readlines()
     file.close()
-    
+
     allgames = []
     y = ''
     for line in lines:
@@ -30,50 +30,27 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
             allgames.append(y)
             y = ''
     games = []
-    
-    for i in range(len(allgames)):    
-        allgames[i] = allgames[i].replace('?','')
-        
+
+    for i in range(len(allgames)):
+        allnames = re.findall('Seat [\d]: (.*) \(', allgames[i])
+        newnames = list(allnames)
+        for j in range(len(allnames)):
+            for char in ['_', '[', '\\', '^', '$', '.', '|', '?', '*', '+', '(', ')']:
+                if char in allnames[j]:
+                    newnames[j] = newnames[j].replace(char, '`')
+        for j in range(len(allnames)):
+            allgames[i] = allgames[i].replace(allnames[j], newnames[j])
+
     for game in allgames:
         if 'shows:' in game:
             games.append(game)
 
     df = []
-    vpippfrplayers = []
 
-    vpip = []
-    pfr = []
-    for game in allgames:
-        vpippfrplayers = vpippfrplayers + re.findall('Seat\s\d:\s(.+)\s\(', game)
-    vpippfrplayers = list(set(vpippfrplayers))
-    vpippfrdf = pd.DataFrame(vpippfrplayers, columns = ['name'])
-    vpippfrdf['tot option'] = 0
-    vpippfrdf['tot put in pot'] = 0
-    vpippfrdf['tot preflop raise'] = 0
-
-    for game in allgames:
-        if '*** FLOP ***' in game: 
-            pfstring = game[(game.index('Game started at:')+len('Game started at:')):game.index('*** FLOP ***')]
-        else:
-            pfstring = game[:game.index('------ Summary ------')]
-
-        vpippfrcount = re.findall('Player\s(.+)\sraises|Player\s(.+)\sallin|Player\s(.+)\scalls|Player\s(.+)\schecks|Player\s(.+)\sfolds', pfstring)
-        for i in vpippfrcount:
-            for j in i:
-                if j != '':
-                    vpipname = j
-            vpippfrdf.loc[vpippfrdf['name'] == vpipname, 'tot option'] += 1
-            if (i[0] != '')|(i[1] != '')|(i[2] != ''):
-                vpippfrdf.loc[vpippfrdf['name'] == vpipname, 'tot put in pot'] += 1
-            if (i[0] != '')|(i[1] != ''):
-                vpippfrdf.loc[vpippfrdf['name'] == vpipname, 'tot preflop raise'] += 1
-    vpippfrdf['vpip'] = vpippfrdf['tot put in pot']/vpippfrdf['tot option']
-    vpippfrdf['pfr'] = vpippfrdf['tot preflop raise']/vpippfrdf['tot option']
     for game in games:
         names = re.findall('Player\s(.*?)\sshows:', game)
         cards = re.findall('Player\s.*?\sshows:.+\[(.*?)\]', game)
         actions = []
-        
         board = re.search('Board:\s\[(.+)\]', game)
         if board:
             board = board.group(1)
@@ -95,6 +72,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
         button = re.search('(Seat\s\d)\sis the button', game).group(1)
         button = re.search('%s:\s(.+)\s\('% button, game).group(1)
         players = re.findall('Seat\s\d:\s(.+)\s\(',game)
+
         for i in range(len(players)):        
             if players[-1] != button:
                 players.insert(0, players.pop(players.index(players[-1])))
@@ -105,7 +83,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
         plrv = 0
         streetreached = 0
         playerspf = players
-        if '*** FLOP ***' in game: 
+        if '*** FLOP ***' in game:
             pfstring = game[(game.index('Game started at:')+len('Game started at:')):game.index('*** FLOP ***')]
         else:
             pfstring = game[:game.index('------ Summary ------')]
@@ -127,7 +105,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
         else:
             flpot = pfpot
             playersfl = list(players)
-        if '*** TURN ***' in game:  
+        if '*** TURN ***' in game:
             if '*** RIVER ***' in game:
                 trstring = game[(game.index('*** TURN ***')+len('*** TURN ***')):game.index('*** RIVER ***')]
             else:
@@ -143,7 +121,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
         else:
             trpot = flpot
             playerstr = list(playersfl)
-        if '*** RIVER ***' in game:  
+        if '*** RIVER ***' in game:
             rvstring = game[(game.index('*** RIVER ***')+len('*** RIVER ***')):game.index('------ Summary ------')]
             if re.findall('Player\s(.+)\s', rvstring) != []:
                 streetreached = 3
@@ -159,22 +137,26 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
         plfl = len(playersfl)
         pltr = len(playerstr)
         plrv = len(playersrv)
-        
+
         for i in range(len(names)):
-            vpip = float(vpippfrdf.loc[vpippfrdf['name'] == names[i], 'vpip'].get_values())         
-            pfr = float(vpippfrdf.loc[vpippfrdf['name'] == names[i], 'pfr'].get_values())
-            
             if board:
-                print('done')
-                if len(board) == 5:    
+                if len(board) == 5:
                     handstrengthrv = calculate.handpercentile(cards[i], board)
+                else:
+                    handstrengthrv = 0.0
                 if len(board) >= 4:    
                     handstrengthtr = calculate.handpercentile(cards[i], board[:4])
-                    #drawstr = hr.draws(cards[i], board[:4])
+                else:
+                    handstrengthtr = 0.0
                 if len(board) >= 3:    
                     handstrengthfl = calculate.handpercentile(cards[i], board[:3])
-                    #drawsfl = hr.draws(cards[i], board[:3])
-            stacks = float(re.search(names[i] + '\s\((.*?)\)', game).group(1))   
+                else:
+                    handstrengthfl = 0.0
+            else:
+                handstrengthrv = 0.0
+                handstrengthtr = 0.0
+                handstrengthfl = 0.0
+            stacks = float(re.search(names[i] + '\s\((.*?)\)', game).group(1))
             actions = re.findall(names[i] + '\s(.+)\s\(([\d\.]+)\)|' + names[i] + '\s(checks)|\*\*\*\s(\w+)\s\*\*\*|--\s(Summary)\s--|Uncalled\sbet\s\(([\d\.]+)\)\sreturned\sto\s' + names[i], game)
             bets = 0.0
             allbets = []
@@ -208,13 +190,13 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
                     if (action[0] == 'allin'):
                         agg = agg + float(action[1])
                     
-                    
-                    if (street == 'FLOP') & ((action[0] == 'raises')|(action[0] == 'bets')|(action[0] == 'allin')) & (handstrengthfl < .6):
-                        blufffl = 1
-                    if (street == 'TURN') & ((action[0] == 'raises')|(action[0] == 'bets')|(action[0] == 'allin')) & (handstrengthtr < .6):
-                        blufftr = 1
-                    if (street == 'RIVER') & ((action[0] == 'raises')|(action[0] == 'bets')|(action[0] == 'allin')) & (handstrengthrv < .6):
-                        bluffrv = 1
+                    if board:
+                        if (street == 'FLOP') & ((action[0] == 'raises')|(action[0] == 'bets')|(action[0] == 'allin')) & (handstrengthfl < .6):
+                            blufffl = 1
+                        if (street == 'TURN') & ((action[0] == 'raises')|(action[0] == 'bets')|(action[0] == 'allin')) & (handstrengthtr < .6):
+                            blufftr = 1
+                        if (street == 'RIVER') & ((action[0] == 'raises')|(action[0] == 'bets')|(action[0] == 'allin')) & (handstrengthrv < .6):
+                            bluffrv = 1
             for j in range(3):
                 if len(allbets) < 4:
                     allbets.append(0.0)
@@ -224,8 +206,6 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
                 
             data = [filename, # filename
                     names[i],#name(str)
-                    vpip,#vpip
-                    pfr,#pfr
                     cards[i],#hand[(str),(str)]
                     board,#board[strings]
                     #boardtextfl, #board texture fl
@@ -276,8 +256,6 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
             
     columnsriver = ['filename',#filename
             'name',#name(str)
-            'vpip',#vpip
-            'pfr',#pfr
            'hand', #hand[(str),(str)]
            'board',#board[strings]
            #'board texture flop', # board texture flop
@@ -331,7 +309,7 @@ alldata = []
 time = 0.0
 for filename in os.listdir('data'):
     start = timeit.default_timer()
-    if filename.endswith('.txt'): 
+    if filename.endswith('.txt'):
         print('reading:' + filename)
         alldata.append(extract('data/' + filename))
         stop = timeit.default_timer()

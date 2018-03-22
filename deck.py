@@ -11,8 +11,8 @@ class Deck(object):#creates deck, iterates through all values and suits creates 
     deck = []
     def __init__(self):
         self.deck = []
-        for value in range(2,15):
-            for suit_n in range (0,4):
+        for suit_n in range(0, 4):
+            for value in range(2, 15):
                 if suit_n == 0:
                     suit_s = 'c'
                 if suit_n == 1:

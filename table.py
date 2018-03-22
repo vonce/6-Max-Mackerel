@@ -52,20 +52,30 @@ class Table(object):
             if i == 0:
                 seatact = poscloseaction
                 i = 1
-            if ((self.players[seatact].hand != []) | (self.players[seatact].stack == 0.0)):
-                self.players[seatact].action(origbet)
-            if (self.players[seatact].act == 'check/fold') & (self.bets[seatact] != max(self.bets)):
-                self.players[seatact].hand = []
-            elif self.players[seatact].act == 'call':
-                self.players[seatact].stack = self.players[seatact].stack - max(self.bets) + self.bets[seatact]
-                self.bets[seatact] = max(self.bets)
-            elif self.players[seatact].act == 'bet/raise':
-                if firstbet == True:
-                    firstbet = False
-                    origbet = self.players[seatact].betamt
-                self.players[seatact].stack = self.players[seatact].stack - self.players[seatact].betamt + self.bets[seatact]
-                self.bets[seatact] = self.players[seatact].betamt
-                poscloseaction = seatact
+            if (self.players[seatact].hand != []) | (self.players[seatact].stack == 0.0):
+                self.players[seatact].act = ''
+                while (self.players[seatact].act != 'check/fold') & (self.players[seatact].act != 'call') & (self.players[seatact].act != 'bet/raise'):
+                    self.players[seatact].action()
+                    if (self.players[seatact].act == 'check/fold') & (self.bets[seatact] != max(self.bets)):
+                        self.players[seatact].hand = []
+                    elif self.players[seatact].act == 'call':
+                        self.players[seatact].stack = self.players[seatact].stack - max(self.bets) + self.bets[seatact]
+                        self.bets[seatact] = max(self.bets)
+                    elif self.players[seatact].act == 'bet/raise':
+                        while (self.players[seatact].betamt > self.players[seatact].stack) | (self.players[seatact].betamt < 2.0) | ((origbet != 0.0) & (self.players[seatact].betamt < origbet * 2)):
+                            self.players[seatact].betamt = float(input('amount:'))
+                            if self.players[seatact].betamt > self.players[seatact].stack:
+                                print('stack too small')
+                            if self.players[seatact].betamt < 2.0:
+                                print('min bet is at least a big blind')
+                            if (origbet != 0.0) & (self.players[seatact].betamt < origbet * 2):
+                                print('raise must be at least double original bet')
+                        if firstbet == True:
+                            firstbet = False
+                            origbet = self.players[seatact].betamt
+                        self.players[seatact].stack = self.players[seatact].stack - self.players[seatact].betamt + self.bets[seatact]
+                        self.bets[seatact] = self.players[seatact].betamt
+                        poscloseaction = seatact
             print(self.players[seatact].name, 'stack:', self.players[seatact].stack, self.players[seatact].act)
             print('board:', self.board)
             seatact = seatact + 1
@@ -84,14 +94,19 @@ class Table(object):
         if sum([i != [] for i in [j.hand for j in self.players]]) == 1:
             winner.append([i != [] for i in [j.hand for j in self.players]].index(True))
         else:
-            print(calculate.equity(self.board, [i.hand for i in self.players]))
-            if [1.0, 0.0] in calculate.equity(self.board, [i.hand for i in self.players]):
-                winner.append([i == [1.0, 0.0] for i in calculate.equity(self.board, [i.hand for i in self.players])].index(True))
+            winarray = calculate.equity(self.board, [i.hand for i in self.players])
+            print(winarray)
+            if [1.0, 0.0] in winarray:
+                winner.append([i == [1.0, 0.0] for i in winarray].index(True))
             else:
-                winner = [i for i, x in enumerate(calculate.equity(self.board, [i.hand for i in self.players])) if i == [0.0, 1.0]]
+                for i in range(len(winarray)):
+                    if winarray[i] == [0.0, 1.0]:
+                        winner.append(i)
+            print(winner)
+            print('________________________________')
         for w in winner:
             print('winner:', self.players[w].name, self.players[w].hand)
-            print('wins:', self.pot)
+            print('wins:', self.pot/len(winner))
             self.players[w].stack = self.players[w].stack + self.pot/len(winner)
         self.bets = []
         self.board = []
@@ -159,7 +174,7 @@ player2 = mk.Mackerel('blug', 200.0, list([]))
 player3 = mk.Mackerel('blop', 200.0, list([]))
 player4 = mk.Mackerel('glub', 200.0, list([]))
 player5 = mk.Mackerel('glug', 200.0, list([]))
-player6 = pl.Player('glop', 200.0, list([]))
+player6 = pl.Player('Vince', 200.0, list([]))
 
 table1 = Table(1.0,2.0)
 table1.players.append(player1)

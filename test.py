@@ -59,14 +59,14 @@ df['hand strength ^2'].plot.hist()
 ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets', color = 'red')
 df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets', color = 'blue', ax = ax)
 
-#X = df.drop(['filename','Unnamed: 0','street reached','name',
-#       'hand','board','hand strength fl','hand strength tr','hand strength rv',
-#       'hand strength ^2','bluff flop','bluff turn',
-#       'bluff river'], axis = 1)
-X = df[['log tot bets','log tot bets/stack','log tot agg',
-       'tot bets/stack','tot bets','rv bets(bb)','rv bets/pot',
-       'fl bets(bb)','fl bets/pot','tot agg','tr bets(bb)',
-       'tr bets/pot']]
+X = df.drop(['filename','Unnamed: 0','street reached','name',
+       'hand','board','hand strength fl','hand strength tr','hand strength rv',
+       'hand strength ^2','bluff flop','bluff turn',
+       'bluff river'], axis = 1)
+#X = df[['log tot bets','log tot bets/stack','log tot agg',
+#       'tot bets/stack','tot bets','rv bets(bb)','rv bets/pot',
+#       'fl bets(bb)','fl bets/pot','tot agg','tr bets(bb)',
+#       'tr bets/pot']]
 y = df['hand strength ^2']
 #print(X.columns)
 #print(y)
@@ -76,7 +76,7 @@ gbr = GradientBoostingRegressor()
 rfr = RandomForestRegressor()
 pipe = Pipeline([
     ('ss', ss),
-    ('rfr', rfr)
+    ('gbr', gbr)
 ])
 params = {
         
