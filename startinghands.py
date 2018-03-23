@@ -13,6 +13,7 @@ import deck as dk
 import itertools
 import pandas as pd
 import numpy as np
+import timeit
 calculate = autoclass("flounder.Calculate")
 
 twosuitdeck = dk.Deck()
@@ -22,11 +23,15 @@ for i in range(26):
 print(twosuitdeck.deck)
 
 twosuithands = []
+df = []
+time = 0.0
 twosuithands += itertools.combinations(twosuitdeck.deck, 2)
 
 for hand in twosuithands:
+    start = timeit.default_timer()
+    totequity = 0.0
+    deck1 = dk.Deck()
     for i in hand:
-        deck1 = dk.Deck()
         deck1.deck.remove(i)
     startingHands = []
     startingHands += itertools.combinations(deck1.deck, 2)
@@ -34,16 +39,21 @@ for hand in twosuithands:
 
     for hs in startingHands:
         equity = calculate.equity([], [hand, hs])[0][0]
-        print(equity)
+        print(hand, hs, equity)
         totequity = totequity + equity
     totequity = totequity/len(startingHands)
+    stop = timeit.default_timer()
+    time = round(time + stop - start, 2)
+    print('Total elapsed:', time, 'sec.\n')
+    df.append((hand, totequity))
+    print(df)
 
-
+df= pd.DataFrame(df)
 
 cards = ['A','K','Q','J','T','9','8','7','6','5','4','3','2']
 
 startingHandsTable = pd.DataFrame(np.zeros((13, 13),dtype = int),index = cards,columns = cards)
 
-print(startingHandsTable)
+print(df)
 
-startingHandsTable.to_csv('startinghands.csv')
+df.to_csv('startinghands.csv')
