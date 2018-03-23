@@ -6,7 +6,6 @@ Created on Mon Mar  5 22:59:00 2018
 """
 import pandas as pd
 import numpy as np
-import handrank as hr
 
 from keras.models import Sequential
 from keras.layers.core import Dense
@@ -101,6 +100,8 @@ print(np.mean(np.abs(z['diff'])))
 print(z.sort_values('diff').values)
 print(z)
 
+print("std", np.std(np.abs(z['diff'])))
+print("median", np.median(np.abs(z['diff'])))
 plt.figure(figsize = (7,7))
 z['diff'].plot.hist()
 #print(np.std(z['diff']))

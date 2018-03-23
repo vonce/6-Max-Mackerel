@@ -6,7 +6,7 @@ Created on Tue Feb 27 11:57:57 2018
 @author: Vince
 """
 import os
-os.environ['JAVA_HOME'] = "/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home"#type which java in terminal and paste here
+os.environ['JAVA_HOME'] = "C:\Program Files\Java\jdk1.8.0_45"#type which java in terminal and paste here
 os.environ['CLASSPATH'] = "./Flounder.jar"
 from jnius import autoclass
 import re

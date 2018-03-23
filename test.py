@@ -7,7 +7,6 @@ Created on Thu Mar  1 14:21:22 2018
 """
 import pandas as pd
 import numpy as np
-import handrank as hr
 from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 from sklearn.linear_model import Lasso
 from sklearn.neighbors import KNeighborsClassifier
@@ -94,7 +93,7 @@ z['test actual'] = list(y_test)
 #z[0] = np.sqrt(z[0])
 #z['test actual'] = np.sqrt(z['test actual'])
 z['diff'] = z[0] - z['test actual']
-print(np.median(np.abs(z['diff'])))
+print("median", np.median(np.abs(z['diff'])))
 print(z)
 #z['diff'].plot.hist()
 print(np.std(z['diff']))
