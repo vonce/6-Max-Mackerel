@@ -27,9 +27,30 @@ df = []
 time = 0.0
 twosuithands += itertools.combinations(twosuitdeck.deck, 2)
 
+
+def simplehand(hand):
+    simphand = ""
+    for i in hand:
+        simphand = simphand + i[0]
+    if (simphand[0] < simphand[1]):
+        simphand = simphand[::-1]
+    if (simphand[1] == 'A'):
+        simphand = simphand[::-1]
+    if (simphand[1] == 'K') & (simphand[0] != 'A'):
+        simphand = simphand[::-1]
+    if (simphand[1] == 'Q') & ((simphand[0] != 'A') & (simphand[0] != 'K')):
+        simphand = simphand[::-1]
+    if (simphand[1] == 'J') & ((simphand[0] != 'A') & (simphand[0] != 'K') & (simphand[0] != 'Q')):
+        simphand = simphand[::-1]
+    if hand[0][0] != hand[1][0]:
+        if hand[0][1] != hand[1][1]:
+            simphand = simphand + "o"
+        else:
+            simphand = simphand + "s"
+    return simphand
+
 for hand in twosuithands:
     df2 = []
-    simplehand = ""
     start = timeit.default_timer()
     totequity = 0.0
     deck1 = dk.Deck()
@@ -38,36 +59,23 @@ for hand in twosuithands:
     startingHands = []
     startingHands += itertools.combinations(deck1.deck, 2)
     print('# of starting hands: ', len(startingHands))
-    for i in hs:
-        simplehand = simplehand + i[0]
-    if hs[0][0] != hs[1][0]:
-        if hs[0][1] != hs[1][1]:
-            simplehand = simplehand + "o"
-        else:
-            simplehand = simplehand + "s"
+
+    print("simplified hand: ", simplehand(hand))
 
     for hs in startingHands:
-        simphand = ""
         equity = calculate.equity([], [hand, hs])[0][0]
-        print(simplehand, hs, equity)
         totequity = totequity + equity
-        for i in hs:
-            simphand = simphand + i[0]
-        if hs[0][0] != hs[1][0]:
-            if hs[0][1] != hs[1][1]:
-                simphand = simphand + "o"
-            else:
-                simphand = simphand + "s"
-        df2.append((simphand, equity))
+        print(simplehand(hand), simplehand(hs), equity)
+        df2.append((simplehand(hs), equity))
     df2 = pd.DataFrame(df2)
-    df2.to_csv(simplehand + '_equity.csv')
+    df2.to_csv('tables/' + simplehand(hand) + '_equity.csv')
     print(df2)
 
     totequity = totequity/len(startingHands)
     stop = timeit.default_timer()
     time = round(time + stop - start, 2)
     print('Total elapsed:', time, 'sec.\n')
-    df.append((simplehand, totequity))
+    df.append((simplehand(hand), totequity))
     print(df)
 
 df= pd.DataFrame(df)
@@ -78,4 +86,4 @@ startingHandsTable = pd.DataFrame(np.zeros((13, 13),dtype = int),index = cards,c
 
 print(df)
 
-df.to_csv('totalequity.csv')
+df.to_csv('tables/totalequity.csv')
