@@ -14,6 +14,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 
+
 df = pd.read_csv('data.csv')
 
 #print(df['name'].value_counts())
@@ -75,7 +76,7 @@ X_train = ss.fit_transform(X_train)
 X_test = ss.transform(X_test)
 print(X.shape)
 model = Sequential()
-model.add(Dense(100, input_dim = 40, activation = 'sigmoid'))
+model.add(Dense(100, input_dim = 38, activation = 'sigmoid'))
 model.add(Dense(50, activation = 'sigmoid'))
 
 

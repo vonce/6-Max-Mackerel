@@ -15,19 +15,6 @@ import pandas as pd
 import numpy as np
 import timeit
 calculate = autoclass("flounder.Calculate")
-
-twosuitdeck = dk.Deck()
-for i in range(26):
-    del twosuitdeck.deck[-1]
-
-print(twosuitdeck.deck)
-
-twosuithands = []
-df = []
-time = 0.0
-twosuithands += itertools.combinations(twosuitdeck.deck, 2)
-
-
 def simplehand(hand):
     simphand = ""
     for i in hand:
@@ -49,6 +36,17 @@ def simplehand(hand):
             simphand = simphand + "s"
     return simphand
 
+twosuitdeck = dk.Deck()
+for i in range(26):
+    del twosuitdeck.deck[-1]
+
+print(twosuitdeck.deck)
+
+twosuithands = []
+df = []
+time = 0.0
+twosuithands += itertools.combinations(twosuitdeck.deck, 2)
+
 for hand in twosuithands:
     df2 = []
     start = timeit.default_timer()
@@ -59,24 +57,26 @@ for hand in twosuithands:
     startingHands = []
     startingHands += itertools.combinations(deck1.deck, 2)
     print('# of starting hands: ', len(startingHands))
-
     print("simplified hand: ", simplehand(hand))
 
     for hs in startingHands:
-        equity = calculate.equity([], [hand, hs])[0][0]
-        totequity = totequity + equity
-        print(simplehand(hand), simplehand(hs), equity)
-        df2.append((simplehand(hs), equity))
-    df2 = pd.DataFrame(df2)
-    df2.to_csv('tables/' + simplehand(hand) + '_equity.csv')
-    print(df2)
+        if simplehand(hand) not in [i[0] for i in df]:
+            equity = calculate.equity([], [hand, hs])[0][0]
+            totequity = totequity + equity
+            df2.append((simplehand(hs), equity))
+    if simplehand(hand) not in [i[0] for i in df]:
+        df2 = pd.DataFrame(df2)
+        df2 = df2.groupby(0).mean()
+        df2.to_csv('tables/' + simplehand(hand) + '_equity.csv')
 
-    totequity = totequity/len(startingHands)
-    stop = timeit.default_timer()
-    time = round(time + stop - start, 2)
-    print('Total elapsed:', time, 'sec.\n')
-    df.append((simplehand(hand), totequity))
-    print(df)
+        totequity = totequity/len(startingHands)
+        stop = timeit.default_timer()
+        time = round(time + stop - start, 2)
+        print('Total elapsed:', time, 'sec.\n')
+        df.append((simplehand(hand), totequity))
+        print("df", df)
+    else:
+        print("skipped!", simplehand(hand))
 
 df= pd.DataFrame(df)
 
@@ -85,5 +85,6 @@ cards = ['A','K','Q','J','T','9','8','7','6','5','4','3','2']
 startingHandsTable = pd.DataFrame(np.zeros((13, 13),dtype = int),index = cards,columns = cards)
 
 print(df)
+print(len(df))
 
 df.to_csv('tables/totalequity.csv')
