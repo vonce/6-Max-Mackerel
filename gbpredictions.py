@@ -8,18 +8,16 @@ Created on Thu Mar  1 14:21:22 2018
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
-from sklearn.linear_model import Lasso
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.pipeline import Pipeline, FeatureUnion
-from sklearn.preprocessing import StandardScaler, PolynomialFeatures, FunctionTransformer, Imputer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 df = pd.read_csv('data.csv')
 
 #print(df['name'].value_counts())
 print(df['board'].dtypes)
 print(df.groupby('cluster').count())
-df = df[df['cluster'] == 3]
+#df = df[df['cluster'] == 3]
 print(df.head())
 print('shape', df.shape)
 #df['board texture'] = df['board'].apply(hr.boardtexture)
@@ -43,7 +41,7 @@ df['log tot agg'] = np.sqrt(df['tot agg'])
 #print(df[df['hand strength ^2'] == 0])
 print(df.columns)
 df2 = df
-df2 = df2[df2['street reached'] == 3]
+df2 = df2[df2['street reached'] == 2]
 df = df.dropna(axis = 0)
 df = df[df['bluff river'] == 0]
 df = df[df['bluff turn'] == 0]
@@ -59,8 +57,8 @@ print(df.corr()['hand strength ^2'].sort_values())
 print(df[df['hand strength rv'].isnull()]['hand strength rv'])
 df['hand strength ^2'].plot.hist()
 #df['log tot bets'].plot.hist()
-ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', s = 1, color = 'red')
-df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', s = 1, color = 'blue', ax = ax)
+ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets', s = 1, color = 'red')
+df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets', s = 1, color = 'blue', ax = ax)
 
 X = df.drop(['filename','Unnamed: 0','street reached','name',
        'hand','board','hand strength fl','hand strength tr','hand strength rv',
@@ -98,7 +96,7 @@ z['test actual'] = list(y_test)
 #z['test actual'] = np.sqrt(z['test actual'])
 z['diff'] = z[0] - z['test actual']
 print("median:", np.median(np.abs(z['diff'])))
-print("std:", np.std(np.abs(z['diff'])))
+print("std:", np.std(z['diff']))
 #print(z)
 #z['diff'].plot.hist()
 #print(np.std(z['diff']))
