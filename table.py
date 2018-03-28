@@ -12,7 +12,6 @@ from jnius import autoclass
 import player as pl
 import mackerel as mk
 import deck as dk
-import handrank as hr
 
 calculate = autoclass("flounder.Calculate")
 

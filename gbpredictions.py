@@ -18,6 +18,10 @@ df = pd.read_csv('data.csv')
 
 #print(df['name'].value_counts())
 print(df['board'].dtypes)
+print(df.groupby('cluster').count())
+df = df[df['cluster'] == 3]
+print(df.head())
+print('shape', df.shape)
 #df['board texture'] = df['board'].apply(hr.boardtexture)
 df['hand strength ^2'] = df['hand strength rv'] ** 2
 df['tot bets/stack'] = df['tot bets']/df['pf stack(bb)']
@@ -55,8 +59,8 @@ print(df.corr()['hand strength ^2'].sort_values())
 print(df[df['hand strength rv'].isnull()]['hand strength rv'])
 df['hand strength ^2'].plot.hist()
 #df['log tot bets'].plot.hist()
-ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets', color = 'red')
-df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets', color = 'blue', ax = ax)
+ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', s = 1, color = 'red')
+df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', s = 1, color = 'blue', ax = ax)
 
 X = df.drop(['filename','Unnamed: 0','street reached','name',
        'hand','board','hand strength fl','hand strength tr','hand strength rv',
@@ -93,7 +97,8 @@ z['test actual'] = list(y_test)
 #z[0] = np.sqrt(z[0])
 #z['test actual'] = np.sqrt(z['test actual'])
 z['diff'] = z[0] - z['test actual']
-print("median", np.median(np.abs(z['diff'])))
-print(z)
+print("median:", np.median(np.abs(z['diff'])))
+print("std:", np.std(np.abs(z['diff'])))
+#print(z)
 #z['diff'].plot.hist()
-print(np.std(z['diff']))
+#print(np.std(z['diff']))

@@ -6,12 +6,14 @@ Created on Tue Feb 27 11:57:57 2018
 @author: Vince
 """
 import os
-os.environ['JAVA_HOME'] = "C:\Program Files\Java\jdk1.8.0_45"#type which java in terminal and paste here
+#os.environ['JAVA_HOME'] = "C:\Program Files\Java\jdk1.8.0_45"#type which java in terminal and paste here
+os.environ['JAVA_HOME'] = "/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home"
 os.environ['CLASSPATH'] = "./Flounder.jar"
 from jnius import autoclass
 import re
 import pandas as pd
 import timeit
+import tools as tools
 
 calculate = autoclass("flounder.Calculate")
 
@@ -62,13 +64,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
             cards[i] = cards[i].replace('10','T')
             cards[i] = cards[i].split(' ')
                   
-        bigblind = float(re.search('Game ID:\s.+\/([\d.]+)\s', game).group(1))   
-        stacks = []
-        
-        pfpot = 0.0
-        flpot = 0.0
-        trpot = 0.0
-        rvpot = 0.0
+        bigblind = float(re.search('Game ID:\s.+\/([\d.]+)\s', game).group(1))
         button = re.search('(Seat\s\d)\sis the button', game).group(1)
         button = re.search('%s:\s(.+)\s\('% button, game).group(1)
         players = re.findall('Seat\s\d:\s(.+)\s\(',game)
@@ -78,9 +74,6 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
                 players.insert(0, players.pop(players.index(players[-1])))
         players = list(reversed(players))
         plpf = len(players)
-        plfl = 0
-        pltr = 0
-        plrv = 0
         streetreached = 0
         playerspf = players
         if '*** FLOP ***' in game:
@@ -139,6 +132,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
         plrv = len(playersrv)
 
         for i in range(len(names)):
+            handstrengthpf = tools.startinghandsrank(cards[i])
             if board:
                 if len(board) == 5:
                     handstrengthrv = calculate.handpercentile(cards[i], board)
@@ -217,6 +211,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
                     round(allbets[0]/bigblind, 2),#preflop bets in (bb)
                     allagg[0],# preflop aggression
                     round((stacks - allbets[0])/pfpot, 2),# stack/preflop pot
+                    handstrengthpf,
                     round((stacks - allbets[0])/bigblind, 2),# stack GOING INTO flop
                     plfl,# # players GOING INTO flop
                     playersfl.index(names[i]),# position flop
@@ -267,6 +262,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
            'pf bets(bb)',# preflop bets in (bb)
            'pf agg',# preflop aggression
            'stack/pfpot',# stack/preflop pot
+           'hand strength pf',# hand strength preflop
            'fl stack(bb)',# stack GOING INTO flop
            '#pl fl',# #players GOING INTO flop
            'position fl',# position flop
