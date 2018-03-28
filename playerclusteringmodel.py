@@ -11,7 +11,7 @@ print(stats)
 print(stats.columns)
 print(stats.shape)
 
-modelstats = stats[stats['numplayedpf'] > 300]
+modelstats = stats[stats['numplayedpf'] > 200]
 #unnamedlist = []
 #for c in list(stats.columns):
 #    if 'Unnamed' in c:
@@ -21,19 +21,18 @@ modelstats = stats[stats['numplayedpf'] > 300]
 
 print(modelstats.shape)
 
-
-
 modeldropcol = ['Unnamed: 0', 'avgstack', 'net', 
                 'numraisedpf', 'numreraisedpf', 'numplayedpf',
                 'numraisedfl', 'numreraisedfl', 'numplayedfl', 'foldtoreraisefl',
                 'numraisedtr', 'numreraisedtr', 'numplayedtr', 'foldtoreraisetr',
                 'numraisedrv', 'numreraisedrv', 'numplayedrv', 'foldtoreraiserv',
+                'numplayedsd',
                 'bb/100hands', 'winpercent'
                 ]
 
 #X = modelstats.drop(modeldropcol, axis = 1)
 #predictablestats = stats.drop(modeldropcol, axis = 1)
-modelcol = ['pctseenfl', 'pctseentr','pctseenrv']
+modelcol = ['foldpf', 'foldtoraisepf', 'callpf', 'raisepf','pctseenfl', 'pctseentr', 'pctseenrv', 'pctseensd',]
 
 X = modelstats[modelcol]
 predictablestats = stats[modelcol]
@@ -43,7 +42,7 @@ ss = StandardScaler()
 ss.fit(X)
 
 X = ss.transform(X)
-km = KMeans(n_clusters = 4).fit(X)
+km = KMeans(n_clusters = 10).fit(X)
 
 #dbscan        =  DBSCAN(eps=2.5, min_samples=10).fit(X)
 #core_samples  =  dbscan.core_sample_indices_
@@ -68,9 +67,9 @@ print(modelstats.corr()['bb/100hands'].sort_values())
 ax2 = sns.heatmap(modelstats.corr())
 fig, ax = plt.subplots()
 
-colors = {0:'red', 1:'blue', 2:'green', 3:'black', 4:'yellow', 5:'orange', 6:'purple', 7:'cyan'}
+colors = {0:'red', 1:'blue', 2:'green', 3:'black', 4:'yellow', 5:'orange', 6:'purple', 7:'cyan', 8:'magenta', 9:'brown'}
 
-ax.scatter(modelstats['bb/100hands'], modelstats['raisepf'], c=modelstats['cluster'].apply(lambda x: colors[x]))
+ax.scatter(modelstats['pctseenfl'], modelstats['bb/100hands'], c=modelstats['cluster'].apply(lambda x: colors[x]))
 
 plt.show()
 #print(stats[stats['cluster'] == 0])
