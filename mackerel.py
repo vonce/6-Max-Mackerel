@@ -1,19 +1,12 @@
 import os
 import tools
-#os.environ['JAVA_HOME'] = "C:\Program Files\Java\jdk1.8.0_45"#type which java in terminal and paste here
-os.environ['JAVA_HOME'] = "/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home"
-os.environ['CLASSPATH'] = "./Flounder.jar"
-from jnius import autoclass
-
-calculate = autoclass("flounder.Calculate")
-
 
 class Mackerel(object):
     name = ''
     hand = []
     stack = 0.0
 
-    def __init__(self, name, stack, hand, act='', betamt=0.0, board = [], pot = 0.0, bets = [], debt = 0.0, error = ''):
+    def __init__(self, name, stack, hand, act='', betamt=0.0, board = [], pot = 0.0, bets = [], debt = 0.0, error = '', pos = 0):
         self.name = name
         self.stack = stack
         self.hand = hand
@@ -21,6 +14,7 @@ class Mackerel(object):
         self.betamt = 0.0
         self.error = error
         self.debt = debt
+        self.pos = pos
 
     def action(self, origbetbehind=0.0):
         
@@ -73,21 +67,8 @@ class Mackerel(object):
                 self.act = 'call'
             self.error = ''
         
-                
     def reload(self):
         if self.stack < 200.0:
             self.debt = self.debt - (200 - self.stack)
             self.stack = 200.0
-#        while (self.act != 'check/fold') & (self.act != 'bet/raise') & (self.act != 'call'):
-#            self.act = input(':')
-#        if self.act == 'bet/raise':
-#            while (self.betamt > self.stack) | (self.betamt < 2.0) | (
-#                    (origbetbehind != 0.0) & (self.betamt < origbetbehind * 2)):
-#                self.betamt = float(input('amount:'))
-#                if self.betamt > self.stack:
-#                    print('stack too small')
-#                if self.betamt < 2.0:
-#                    print('min bet is at least a big blind')
-#                if (origbetbehind != 0.0) & (self.betamt < origbetbehind * 2):
-#                    print('raise must be at least double original bet')
 
