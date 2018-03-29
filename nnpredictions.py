@@ -7,19 +7,20 @@ Created on Mon Mar  5 22:59:00 2018
 import pandas as pd
 import numpy as np
 
+
 from keras.models import Sequential
 from keras.layers.core import Dense
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
-
+import seaborn as sns; sns.set()
 
 df = pd.read_csv('data.csv')
 
 #print(df['name'].value_counts())
 
-
+df = df[df['cluster'] == 9]
 df['hand strength ^2'] = df['hand strength rv'] ** 2
 df['tot bets/stack'] = df['tot bets']/df['pf stack(bb)']
 df['log tot bets'] = np.log(df['tot bets'])
@@ -56,10 +57,8 @@ print(df.corr()['hand strength ^2'].sort_values())
 print(df[df['hand strength rv'].isnull()]['hand strength rv'])
 df['hand strength ^2'].plot.hist()
 #df['log tot bets'].plot.hist()
-ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', color = 'red')
-df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', color = 'blue', ax = ax)
 
-X = df.drop(['filename','Unnamed: 0','street reached','name',
+X = df.drop(['filename','Unnamed: 0','street reached','name','cluster',
        'hand','board','hand strength fl','hand strength tr','hand strength rv',
        'hand strength ^2','bluff flop','bluff turn',
        'bluff river'], axis = 1)
@@ -76,15 +75,18 @@ X_train = ss.fit_transform(X_train)
 X_test = ss.transform(X_test)
 print(X.shape)
 model = Sequential()
-model.add(Dense(100, input_dim = 38, activation = 'sigmoid'))
+model.add(Dense(50, input_dim = 38, activation = 'sigmoid'))
 model.add(Dense(50, activation = 'sigmoid'))
-
 
 model.add(Dense(1))
 
 model.compile(loss = 'mean_squared_error', optimizer = 'adam')
 
 history = model.fit(X_train, y_train, validation_data = (X_test, y_test), epochs = 20)
+
+ax2 = sns.heatmap(df.corr())
+ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', color = 'red')
+df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets/stack', color = 'blue', ax = ax)
 
 plt.figure(figsize = (10,10))
 plt.plot(history.history['loss'], label = 'Training Loss')
@@ -101,7 +103,7 @@ print(np.mean(np.abs(z['diff'])))
 print(z.sort_values('diff').values)
 print(z)
 
-print("std", np.std(np.abs(z['diff'])))
+print("std", np.std(z['diff']))
 print("median", np.median(np.abs(z['diff'])))
 plt.figure(figsize = (7,7))
 z['diff'].plot.hist()
