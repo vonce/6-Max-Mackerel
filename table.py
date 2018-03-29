@@ -52,35 +52,47 @@ class Table(object):
                 seatact = poscloseaction
                 i = 1
             if (self.players[seatact].hand != []) | (self.players[seatact].stack == 0.0):
+                for i in range(len(self.players)):
+                    self.players[i].pot = self.pot
+                    self.players[i].bets = self.bets
+                    self.players[i].board = self.board
                 self.players[seatact].act = ''
-                while (self.players[seatact].act != 'check/fold') & (self.players[seatact].act != 'call') & (self.players[seatact].act != 'bet/raise'):
+                while (self.players[seatact].act != 'check/fold') & (self.players[seatact].act != 'call') & (self.players[seatact].act != 'bet/raise') & (self.players[seatact].act != 'allin'):
                     self.players[seatact].action()
-                    if (self.players[seatact].act == 'check/fold') & (self.bets[seatact] != max(self.bets)):
-                        self.players[seatact].hand = []
-                    elif self.players[seatact].act == 'call':
-                        self.players[seatact].stack = self.players[seatact].stack - max(self.bets) + self.bets[seatact]
-                        self.bets[seatact] = max(self.bets)
-                    elif self.players[seatact].act == 'bet/raise':
+                    if self.players[seatact].act == 'bet/raise':
                         while (self.players[seatact].betamt > self.players[seatact].stack) | (self.players[seatact].betamt < 2.0) | ((origbet != 0.0) & (self.players[seatact].betamt < origbet * 2)):
-                            self.players[seatact].betamt = float(input('amount:'))
-                            if self.players[seatact].betamt > self.players[seatact].stack:
-                                print('stack too small')
-                            if self.players[seatact].betamt < 2.0:
-                                print('min bet is at least a big blind')
-                            if (origbet != 0.0) & (self.players[seatact].betamt < origbet * 2):
-                                print('raise must be at least double original bet')
+                            self.players[seatact].action()
+                            if self.players[seatact].act == 'bet/raise':
+                                if self.players[seatact].betamt > self.players[seatact].stack:
+                                    self.players[seatact].error = 'stack too small'
+                                elif self.players[seatact].betamt < 2.0:
+                                    self.players[seatact].error = 'min bet is at least a big blind'
+                                elif (origbet != 0.0) & (self.players[seatact].betamt < origbet * 2):
+                                    self.players[seatact].error = 'raise must be at least double original bet'
+                            else:
+                                break
                         if firstbet == True:
                             firstbet = False
                             origbet = self.players[seatact].betamt
                         self.players[seatact].stack = self.players[seatact].stack - self.players[seatact].betamt + self.bets[seatact]
                         self.bets[seatact] = self.players[seatact].betamt
                         poscloseaction = seatact
-            print(self.players[seatact].name, 'stack:', self.players[seatact].stack, self.players[seatact].act)
-            print('board:', self.board)
+                    elif (self.players[seatact].act == 'allin'):
+                        self.players[seatact].betamt = self.players[seatact].stack
+                        self.bets[seatact] = self.players[seatact].stack
+                        self.players[seatact].stack = 0
+                    elif (self.players[seatact].act == 'check/fold') & (self.bets[seatact] != max(self.bets)):
+                        self.players[seatact].hand = []
+                    elif self.players[seatact].act == 'call':
+                        self.players[seatact].stack = self.players[seatact].stack - max(self.bets) + self.bets[seatact]
+                        self.bets[seatact] = max(self.bets)
+                        
+                print('\n', self.players[seatact].name, 'stack:', self.players[seatact].stack)
+                print(self.players[seatact].act, self.bets[seatact])
+                print(self.bets)
             seatact = seatact + 1
             if seatact == len(self.players):
                 seatact = 0
-            print(self.bets)
         self.pot = self.pot + sum(self.bets)
         print('pot', self.pot)
         self.bets = [num * 0 for num in self.bets]
@@ -99,18 +111,27 @@ class Table(object):
                 winner.append([i == [1.0, 0.0] for i in winarray].index(True))
             else:
                 for i in range(len(winarray)):
-                    if winarray[i] == [0.0, 1.0]:
+                    if (winarray[i] == [0.0, 1.0]) & (self.players[i].hand != []):
                         winner.append(i)
             print(winner)
-            print('________________________________')
+
         for w in winner:
-            print('winner:', self.players[w].name, self.players[w].hand)
+            print('winner:', self.players[w].name, self.players[w].hand, self.board)
             print('wins:', self.pot/len(winner))
             self.players[w].stack = self.players[w].stack + self.pot/len(winner)
+        print('________________________________\n\n\n')
         self.bets = []
         self.board = []
         self.d.__init__()
         self.d.shuffle()
+        self.button = self.button + 1
+        if self.button >= len(self.players):
+            self.button = 0
+        for i in range(len(self.players)):
+            self.players[i].pot = self.pot
+            self.players[i].bets = self.bets
+            self.players[i].board = self.board
+            self.players[i].reload()
         return True;
 
     def nlhhand(self):
@@ -133,7 +154,10 @@ class Table(object):
             else:
                 self.bets.append(0.0)
             print(self.players[i].name, 'hand:', self.players[i].hand)
+        print('\n\n\n HANDS ABOVE NO LOOKING\n------------------')
+        for i in range(len(self.players)):
             print(self.players[i].name, 'stack:', self.players[i].stack)
+            print(self.players[i].name, 'rebuy:', self.players[i].debt)
 
         if self.bettinground(preflop = True):
             return
@@ -156,11 +180,7 @@ class Table(object):
         if self.bettinground():
             return
         print(' ')
-
-        self.button = self.button + 1
-        if self.button >= len(self.players):
-            self.button = 0
-
+        
         self.endhand()
         
         
@@ -173,7 +193,7 @@ player2 = mk.Mackerel('blug', 200.0, list([]))
 player3 = mk.Mackerel('blop', 200.0, list([]))
 player4 = mk.Mackerel('glub', 200.0, list([]))
 player5 = mk.Mackerel('glug', 200.0, list([]))
-player6 = pl.Player('Vince', 200.0, list([]))
+player6 = mk.Mackerel('Vince', 200.0, list([]))
 
 table1 = Table(1.0,2.0)
 table1.players.append(player1)
@@ -183,7 +203,7 @@ table1.players.append(player4)
 table1.players.append(player5)
 table1.players.append(player6)
 
-for i in range(10):
+for i in range(1000):
     table1.nlhhand()
 
 #print(table1.players[0].hand)

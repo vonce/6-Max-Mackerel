@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import timeit
 
 pfequity = pd.read_csv('./tables/totalequity.csv')
 #print(pfequity.columns)
