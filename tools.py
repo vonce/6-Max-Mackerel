@@ -1,5 +1,13 @@
 import pandas as pd
 import numpy as np
+import os
+#os.environ['JAVA_HOME'] = "C:\Program Files\Java\jdk1.8.0_45"#type which java in terminal and paste here
+os.environ['JAVA_HOME'] = "/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home"
+os.environ['CLASSPATH'] = "./Flounder.jar"
+from jnius import autoclass
+
+calculate = autoclass("flounder.Calculate")
+
 
 pfequity = pd.read_csv('./tables/totalequity.csv')
 #print(pfequity.columns)

@@ -35,13 +35,13 @@ class Mackerel(object):
         else:
             if self.stack < 2.0:
                 self.act = 'call'
-            elif (calculate.handpercentile(self.hand, self.board) > 3/5) & (max(self.bets) == 0):
+            elif (tools.calculate.handpercentile(self.hand, self.board) > 3/5) & (max(self.bets) == 0):
                 if self.stack < self.pot:
                     self.betamt = self.stack
                 else:
                     self.betamt = self.pot
                 self.act = 'bet/raise'
-            elif (calculate.handpercentile(self.hand, self.board) > 0.90) & (max(self.bets) < self.pot):
+            elif (tools.calculate.handpercentile(self.hand, self.board) > 0.90) & (max(self.bets) < self.pot):
                 if self.stack < self.pot:
                     self.betamt = self.stack
                 if max(self.bets) == 0:
@@ -51,7 +51,7 @@ class Mackerel(object):
                 else:
                     self.betamt = max(self.bets) * 5
                 self.act = 'bet/raise'
-            elif (calculate.handpercentile(self.hand, self.board) > 3/5) & (max(self.bets) > self.pot/2):
+            elif (tools.calculate.handpercentile(self.hand, self.board) > 3/5) & (max(self.bets) > self.pot/2):
                 self.act = 'call'
             else:
                 self.act = 'check/fold' 
