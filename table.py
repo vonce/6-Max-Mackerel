@@ -193,7 +193,7 @@ player2 = mk.Mackerel('blug', 200.0, list([]))
 player3 = mk.Mackerel('blop', 200.0, list([]))
 player4 = mk.Mackerel('glub', 200.0, list([]))
 player5 = mk.Mackerel('glug', 200.0, list([]))
-player6 = mk.Mackerel('Vince', 200.0, list([]))
+player6 = pl.Player('Vince', 200.0, list([]))
 
 table1 = Table(1.0,2.0)
 table1.players.append(player1)
