@@ -16,6 +16,7 @@ import timeit
 import tools as tools
 
 calculate = autoclass("flounder.Calculate")
+handrank = autoclass("flounder.Handranker")
 
 def extract(txt):# extracts text from Winning Poker Network datamined data.
     filename = txt
@@ -58,8 +59,8 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
             board = board.group(1)
             board = board.replace('10','T')
             board = board.split(' ')
-            #boardtextfl = hr.boardtexture(board[:3])
-            #boardtexttr = hr.boardtexture(board[:4])
+            boardtextfl = calculate.boardtexturelookup(board[:3])
+            boardtexttr = calculate.boardtexturelookup(board[:4])
         for i in range(len(cards)):
             cards[i] = cards[i].replace('10','T')
             cards[i] = cards[i].split(' ')
@@ -203,110 +204,114 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
                 if len(allagg) < 4:
                     allagg.append(0)
                 
-            data = [filename, # filename
-                    names[i],#name(str)
-                    cards[i],#hand[(str),(str)]
-                    board,#board[strings]
-                    #boardtextfl, #board texture fl
-                    #boardtexttr, # board texture tr
-                    round(stacks/bigblind, 2),#preflop stack in bigblinds
-                    plpf,# #players preflop
-                    playerspf.index(names[i]),#player's position preflop, 0 is button
-                    playerspf.index(names[i])/(plpf - 1),#player's position preflop/total players
-                    round(allbets[0]/bigblind, 2),#preflop bets in (bb)
-                    allagg[0],# preflop aggression
-                    round((stacks - allbets[0])/pfpot, 2),# stack/preflop pot
-                    handstrengthpf,
-                    round((stacks - allbets[0])/bigblind, 2),# stack GOING INTO flop
-                    plfl,# # players GOING INTO flop
-                    playersfl.index(names[i]),# position flop
-                    playersfl.index(names[i])/(plfl - 1),# position flop/total players
-                    round(allbets[1]/bigblind, 2),#flop bets in (bb)
-                    round(allbets[1]/pfpot, 2),# flop bets/pfpot
-                    allagg[1],# flop aggression
-                    round((stacks - allbets[0] - allbets[1])/flpot, 2),#stack/flop pot
-                    handstrengthfl,# hand strength flop
-                    effectivehandstrengthfl,# effective hand strength flop
-                    blufffl, # bluff flop
-                    round((stacks - allbets[0] - allbets[1])/bigblind, 2),# stack GOING INTO turn
-                    pltr,# # players GOING INTO turn
-                    playerstr.index(names[i]),# position turn
-                    playerstr.index(names[i])/(pltr - 1),# position turn/total players
-                    round(allbets[2]/bigblind, 2),#turn bets in (bb)
-                    round(allbets[2]/flpot, 2),#turn bets/flpot
-                    allagg[2],# turn aggression
-                    round((stacks - allbets[0] - allbets[1] - allbets[2])/trpot, 2),#stack/turn pot
-                    handstrengthtr,# hand strength turn
-                    effectivehandstrengthtr, #effective hand strength turn
-                    blufftr, #bluff turn
-                    round((stacks - allbets[0] - allbets[1] - allbets[2])/bigblind, 2),# stack GOING INTO river
-                    plrv,# # players GOING INTO river
-                    playersrv.index(names[i]),# position river
-                    playersrv.index(names[i])/(plrv - 1),# position river/total players
-                    round(allbets[3]/bigblind, 2),#river bets in (bb)
-                    round(allbets[3]/pfpot, 2),# river bets/trpot
-                    allagg[3],# river aggression
-                    round((stacks - allbets[0] - allbets[1] - allbets[2] - allbets[3])/rvpot, 2),#stack/river pot
-                    handstrengthrv,#hand strength river
-                    bluffrv,# bluff river
-                    sum(allbets),# total bets
-                    sum(allagg),#total aggression
-                    round(sum(allbets)/stacks, 2),#bets/stacks
+            data = [filename,  # filename
+                    names[i],  #name(str)
+                    cards[i],  #hand[(str),(str)]
+                    board,  #board[strings]
+                    boardtextfl,  #board texture fl
+                    boardtexttr,  # board texture tr
+                    round(stacks/bigblind, 2),  #preflop stack in bigblinds
+                    plpf,  # #players preflop
+                    playerspf.index(names[i]),  #player's position preflop, 0 is button
+                    playerspf.index(names[i])/(plpf - 1),  #player's position preflop/total players
+                    round(allbets[0]/bigblind, 2),  #preflop bets in (bb)
+                    allagg[0],  # preflop aggression
+                    round((stacks - allbets[0])/pfpot, 2),  # stack/preflop pot
+                    handstrengthpf,  #hand strength pf
+                    round((stacks - allbets[0])/bigblind, 2),  # stack GOING INTO flop
+                    plfl,  # # players GOING INTO flop
+                    playersfl.index(names[i]),  # position flop
+                    playersfl.index(names[i])/(plfl - 1),  # position flop/total players
+                    round(allbets[1]/bigblind, 2),  #flop bets in (bb)
+                    round(allbets[1]/pfpot, 2),  # flop bets/pfpot
+                    allagg[1],  # flop aggression
+                    round((stacks - allbets[0] - allbets[1])/flpot, 2),  #stack/flop pot
+                    handstrengthfl,  # hand strength flop
+                    effectivehandstrengthfl,  # effective hand strength flop
+                    blufffl,  # bluff flop
+                    round(allbets[0] + allbets[1], 2),  #total bets at flop
+                    round((stacks - allbets[0] - allbets[1])/bigblind, 2),  # stack GOING INTO turn
+                    pltr,  # # players GOING INTO turn
+                    playerstr.index(names[i]),  # position turn
+                    playerstr.index(names[i])/(pltr - 1),  # position turn/total players
+                    round(allbets[2]/bigblind, 2),  #turn bets in (bb)
+                    round(allbets[2]/flpot, 2),  #turn bets/flpot
+                    allagg[2],  # turn aggression
+                    round((stacks - allbets[0] - allbets[1] - allbets[2])/trpot, 2),  #stack/turn pot
+                    handstrengthtr,  # hand strength turn
+                    effectivehandstrengthtr,  #effective hand strength turn
+                    blufftr,  #bluff turn
+                    round(allbets[0] + allbets[1] + allbets[2], 2),  # total bets at flop
+                    round((stacks - allbets[0] - allbets[1] - allbets[2])/bigblind, 2),  # stack GOING INTO river
+                    plrv,  # # players GOING INTO river
+                    playersrv.index(names[i]),  # position river
+                    playersrv.index(names[i]) / (plrv - 1),  # position river/total players
+                    round(allbets[3]/bigblind, 2),  #river bets in (bb)
+                    round(allbets[3]/pfpot, 2),  # river bets/trpot
+                    allagg[3],  # river aggression
+                    round((stacks - allbets[0] - allbets[1] - allbets[2] - allbets[3])/rvpot, 2),  #stack/river pot
+                    handstrengthrv,  #hand strength river
+                    bluffrv,  # bluff river
+                    sum(allbets),  # total bets
+                    sum(allagg),  #total aggression
+                    round(sum(allbets)/stacks, 2),  #bets/stacks
                     streetreached
                     ]
             df.append(data)
             
-    columnsriver = ['filename',#filename
-            'name',#name(str)
-           'hand', #hand[(str),(str)]
-           'board',#board[strings]
-           #'board texture flop', # board texture flop
-           #'board texture turn', # board texture turn
-           'pf stack(bb)',#preflop stack in big blinds
-           '#pl pf',# #players preflop
-           'position pf',#player's position preflop, 0 is button
-           'position pf/#pl pf',# player's position preflop/total players
-           'pf bets(bb)',# preflop bets in (bb)
-           'pf agg',# preflop aggression
-           'stack/pfpot',# stack/preflop pot
-           'hand strength pf',# hand strength preflop
-           'fl stack(bb)',# stack GOING INTO flop
-           '#pl fl',# #players GOING INTO flop
-           'position fl',# position flop
-           'position fl/#pl fl',# position flop/total players
-           'fl bets(bb)',# flop bets in (bb) 
-           'fl bets/pot',# flop bets/pfpot
-           'fl agg',# flop aggression
-           'stack/flpot',# stack/flop pot
-           'hand strength fl',# hand strength flop
-           'eff hand strength fl',#effective hand strength flop
-           'bluff flop',# bluff flop
-           'tr stack(bb)',# stack GOING INTO turn
-           '#pl tr',# # players GOING INTO turn
-           'position tr',# position turn
-           'position tr/#pl tr',# position turn/total players
-           'tr bets(bb)',# turn bets in (bb)
-           'tr bets/pot',# turn bets/flpot
-           'tr agg',# turn aggression
-           'stack/trpot',# stack/turn pot
-           'hand strength tr',# hand strength turn
-           'eff hand strength tr',# eff hand strength turn
-           'bluff turn',# bluff turn
-           'rv stack(bb)',#stack GOING INTO river
-           '#pl rv',# # players GOING INTO river
-           'position rv',# position river
-           'position rv/#pl rv',# position river/total players
-           'rv bets(bb)',# river bets in (bb)
-           'rv bets/pot',#river bets/ trpot
-           'rv agg',# river aggression
-           'stack/rvpot',# stack/ river pot
-           'hand strength rv',# hand strength river
-           'bluff river',# bluff river
-           'tot bets',# total bets
-           'tot agg',# total aggression
-           'bets/stacks',# bets/stacks
-           'street reached'# street reached
-           ]    
+    columnsriver = ['filename',  #filename
+                    'name',  #name(str)
+                    'hand',  #hand[(str),(str)]
+                    'board',  #board[strings]
+                    'board texture flop',  # board texture flop
+                    'board texture turn',  # board texture turn
+                    'pf stack(bb)',  #preflop stack in big blinds
+                    '#pl pf',  # #players preflop
+                    'position pf',  #player's position preflop, 0 is button
+                    'position pf/#pl pf',  # player's position preflop/total players
+                    'pf bets(bb)',  # preflop bets in (bb)
+                    'pf agg',  # preflop aggression
+                    'stack/pfpot',  # stack/preflop pot
+                    'hand strength pf',  # hand strength preflop
+                    'fl stack(bb)',  # stack GOING INTO flop
+                    '#pl fl',  # #players GOING INTO flop
+                    'position fl',  # position flop
+                    'position fl/#pl fl',  # position flop/total players
+                    'fl bets(bb)',  # flop bets in (bb)
+                    'fl bets/pot',  # flop bets/pfpot
+                    'fl agg',  # flop aggression
+                    'stack/flpot',  # stack/flop pot
+                    'hand strength fl',  # hand strength flop
+                    'eff hand strength fl',  #effective hand strength flop
+                    'bluff flop',  # bluff flop
+                    'total bets flop',  #total bets flop
+                    'tr stack(bb)',  # stack GOING INTO turn
+                    '#pl tr',  # # players GOING INTO turn
+                    'position tr',  # position turn
+                    'position tr/#pl tr',  # position turn/total players
+                    'tr bets(bb)',  # turn bets in (bb)
+                    'tr bets/pot',  # turn bets/flpot
+                    'tr agg',  # turn aggression
+                    'stack/trpot',  # stack/turn pot
+                    'hand strength tr',  # hand strength turn
+                    'eff hand strength tr',  # eff hand strength turn
+                    'bluff turn',  # bluff turn
+                    'total bets turn',  # total bets turn
+                    'rv stack(bb)',  #stack GOING INTO river
+                    '#pl rv',  # # players GOING INTO river
+                    'position rv',  # position river
+                    'position rv/#pl rv',  # position river/total players
+                    'rv bets(bb)',  # river bets in (bb)
+                    'rv bets/pot',  #river bets/ trpot
+                    'rv agg',  # river aggression
+                    'stack/rvpot',  # stack/ river pot
+                    'hand strength rv',  # hand strength river
+                    'bluff river',  # bluff river
+                    'tot bets',  # total bets
+                    'tot agg',  # total aggression
+                    'bets/stacks',  # bets/stacks
+                    'street reached'  # street reached
+                    ]
     df = pd.DataFrame(df, columns = columnsriver)
     return df
 

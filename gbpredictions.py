@@ -109,5 +109,3 @@ print("std:", np.std(z['diff']))
 #print(z)
 #z['diff'].plot.hist()
 #print(np.std(z['diff']))
-
-def 

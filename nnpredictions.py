@@ -20,7 +20,7 @@ df = pd.read_csv('data.csv')
 
 #print(df['name'].value_counts())
 
-df = df[df['cluster'] == 9]
+#df = df[df['cluster'] == 9]
 df['hand strength ^2'] = df['hand strength rv'] ** 2
 df['tot bets/stack'] = df['tot bets']/df['pf stack(bb)']
 df['log tot bets'] = np.log(df['tot bets'])
@@ -104,7 +104,6 @@ print(z.sort_values('diff').values)
 print(z)
 
 print("std", np.std(z['diff']))
-print("median", np.median(np.abs(z['diff'])))
 plt.figure(figsize = (7,7))
 z['diff'].plot.hist()
 #print(np.std(z['diff']))
