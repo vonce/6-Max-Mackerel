@@ -17,11 +17,18 @@ df = pd.read_csv('data.csv')
 #print(df['name'].value_counts())
 print(df['board'].dtypes)
 print(df.groupby('cluster').count())
-#df = df[df['cluster'] == 3]
+#df = df[df['cluster'] == 2]
 print(df.head())
 print('shape', df.shape)
 #df['board texture'] = df['board'].apply(hr.boardtexture)
-df['hand strength ^2'] = df['hand strength rv'] ** 2
+df['hand strength rv ^2'] = df['hand strength rv'] ** 2
+df['hand strength tr ^2'] = df['hand strength tr'] ** 2
+df['hand strength fl ^2'] = df['hand strength fl'] ** 2
+
+df['log tot bets pf'] = np.log(df['pf bets(bb)'])
+df['tot bets fl'] = df['pf bets(bb)'] + df['fl bets(bb)']
+df['tot bets tr'] = df['tot bets fl'] + df['tr bets(bb)']
+
 df['tot bets/stack'] = df['tot bets']/df['pf stack(bb)']
 df['log tot bets'] = np.log(df['tot bets'])
 df['log tot bets/stack'] = np.log(df['tot bets/stack'])
@@ -41,34 +48,36 @@ df['log tot agg'] = np.sqrt(df['tot agg'])
 #print(df[df['hand strength ^2'] == 0])
 print(df.columns)
 df2 = df
-df2 = df2[df2['street reached'] == 2]
+#df2 = df2[df2['street reached'] == 2]
 df = df.dropna(axis = 0)
 df = df[df['bluff river'] == 0]
 df = df[df['bluff turn'] == 0]
 #df = df[df['bluff flop'] == 0]
-df = df[df['street reached'] == 3]
+#df = df[df['street reached'] == 3]
 #df = df[df['pf stack(bb)'] > 80]
 #df = df[df['straight draws flop'] == 0]
 #df = df[df['flush draws flop'] == 0]
 #df = df[df['straight draws turn'] == 0]
 #df = df[df['flush draws turn'] == 0]
 #print(df['bluff river'].value_counts())
-print(df.corr()['hand strength ^2'].sort_values())
+print(df.corr()['hand strength pf'].sort_values())
 print(df[df['hand strength rv'].isnull()]['hand strength rv'])
-df['hand strength ^2'].plot.hist()
+df['hand strength pf'].plot.hist()
 #df['log tot bets'].plot.hist()
-ax = df2.plot.scatter(x = 'hand strength ^2', y = 'log tot bets', s = 1, color = 'red')
-df.plot.scatter(x = 'hand strength ^2', y = 'log tot bets', s = 1, color = 'blue', ax = ax)
+ax = df2.plot.scatter(x = 'hand strength pf', y = 'pf bets(bb)', s = 1, color = 'red')
+df.plot.scatter(x = 'hand strength pf', y = 'pf bets(bb)', s = 1, color = 'blue', ax = ax)
 
 X = df.drop(['filename','Unnamed: 0','street reached','name',
-       'hand','board','hand strength fl','hand strength tr','hand strength rv',
-       'hand strength ^2','bluff flop','bluff turn',
+       'hand','board','hand strength fl','hand strength fl ^2',
+       'hand strength tr','hand strength tr ^2',
+       'hand strength rv','hand strength rv ^2',
+       'hand strength pf','bluff flop','bluff turn',
        'bluff river'], axis = 1)
 #X = df[['log tot bets','log tot bets/stack','log tot agg',
 #       'tot bets/stack','tot bets','rv bets(bb)','rv bets/pot',
 #       'fl bets(bb)','fl bets/pot','tot agg','tr bets(bb)',
 #       'tr bets/pot']]
-y = df['hand strength ^2']
+y = df['hand strength pf']
 #print(X.columns)
 #print(y)
 X_train, X_test, y_train, y_test = train_test_split(X,y)
@@ -100,3 +109,5 @@ print("std:", np.std(z['diff']))
 #print(z)
 #z['diff'].plot.hist()
 #print(np.std(z['diff']))
+
+def 
