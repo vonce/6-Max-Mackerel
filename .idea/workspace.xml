@@ -1,9 +1,190 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09d03554-e047-49a4-b8eb-c6aa77e59203" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Flounder.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Flounder.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/startinghands.py" beforeDir="false" afterPath="$PROJECT_DIR$/startinghands.py" afterDir="false" />
+    <list default="true" id="50b0aab4-0bf6-443f-842c-59cb37f5821a" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/playground notebook.ipynb" />
+      <change beforePath="$PROJECT_DIR$/.idea/Mackerel.iml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/.spyproject/workspace.ini" afterPath="$PROJECT_DIR$/.spyproject/workspace.ini" />
+      <change beforePath="$PROJECT_DIR$/Flounder.jar" afterPath="$PROJECT_DIR$/Flounder.jar" />
+      <change beforePath="$PROJECT_DIR$/dataextract.py" afterPath="$PROJECT_DIR$/dataextract.py" />
+      <change beforePath="$PROJECT_DIR$/gbpredictions.py" afterPath="$PROJECT_DIR$/gbpredictions.py" />
+      <change beforePath="$PROJECT_DIR$/mackerel.py" afterPath="$PROJECT_DIR$/mackerel.py" />
+      <change beforePath="$PROJECT_DIR$/playerclusteringmodel.py" afterPath="$PROJECT_DIR$/playerclusteringmodel.py" />
+      <change beforePath="$PROJECT_DIR$/table.py" afterPath="$PROJECT_DIR$/table.py" />
+      <change beforePath="$PROJECT_DIR$/tables/22_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/32o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/32s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/33_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/42o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/42s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/43o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/43s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/44_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/52o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/52s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/53o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/53s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/54o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/54s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/55_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/62o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/62s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/63o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/63s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/64o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/64s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/65o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/65s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/66_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/72o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/72s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/73o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/73s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/74o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/74s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/75o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/75s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/76o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/76s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/77_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/82o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/82s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/83o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/83s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/84o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/84s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/85o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/85s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/86o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/86s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/87o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/87s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/88_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/92o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/92s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/93o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/93s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/94o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/94s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/95o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/95s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/96o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/96s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/97o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/97s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/98o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/98s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/99_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A2o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A2s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A3o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A3s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A4o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A4s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A5o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A5s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A6o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A6s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A7o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A7s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A8o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A8s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A9o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/A9s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/AA_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/AJo_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/AJs_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/AKo_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/AKs_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/AQo_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/AQs_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/ATo_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/ATs_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J2o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J2s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J3o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J3s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J4o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J4s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J5o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J5s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J6o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J6s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J7o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J7s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J8o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J8s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J9o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/J9s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/JJ_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/JTo_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/JTs_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K2o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K2s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K3o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K3s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K4o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K4s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K5o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K5s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K6o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K6s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K7o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K7s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K8o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K8s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K9o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/K9s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/KJo_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/KJs_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/KK_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/KQo_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/KQs_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/KTo_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/KTs_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q2o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q2s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q3o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q3s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q4o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q4s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q5o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q5s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q6o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q6s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q7o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q7s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q8o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q8s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q9o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/Q9s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/QJo_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/QJs_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/QQ_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/QTo_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/QTs_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T2o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T2s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T3o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T3s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T4o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T4s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T5o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T5s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T6o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T6s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T7o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T7s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T8o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T8s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T9o_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/T9s_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tables/TT_equity.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tools.py" afterPath="$PROJECT_DIR$/tools.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,20 +193,26 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Mackerel$javatest.coverage" NAME="javatest Coverage Results" MODIFIED="1521506499322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Mackerel$table.coverage" NAME="table Coverage Results" MODIFIED="1521654849919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Mackerel$test.coverage" NAME="test Coverage Results" MODIFIED="1521682349560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Mackerel$startinghands.coverage" NAME="startinghands Coverage Results" MODIFIED="1521780756847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Mackerel$dataextract.coverage" NAME="dataextract Coverage Results" MODIFIED="1521673166964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="dataextract.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dataextract.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="316" column="8" selection-start-line="316" selection-start-column="8" selection-end-line="317" selection-end-column="47" />
+            <state relative-caret-position="1496">
+              <caret line="88" column="117" lean-forward="false" selection-start-line="88" selection-start-column="117" selection-end-line="88" selection-end-column="117" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="handrank.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/handrank.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="24" column="54" lean-forward="false" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+              <folding>
+                <element signature="e#158#174#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -33,89 +220,88 @@
       <file leaf-file-name="playerstatsextract.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/playerstatsextract.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1395">
-              <caret line="93" selection-start-line="93" selection-end-line="93" selection-end-column="27" />
+            <state relative-caret-position="272">
+              <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="player.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/player.py">
+      <file leaf-file-name="temp.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/temp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="153">
+              <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mackerel.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mackerel.py">
+      <file leaf-file-name="playerclusteringmodel.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/playerclusteringmodel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="62" selection-start-line="5" selection-start-column="62" selection-end-line="5" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="table.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/table.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2640">
-              <caret line="176" column="26" selection-start-line="176" selection-start-column="26" selection-end-line="176" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-144">
-              <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+            <state relative-caret-position="-142">
+              <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
               <folding>
-                <element signature="e#47#106#1" />
-                <element signature="e#107#126#0" expanded="true" />
+                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="startinghands.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/startinghands.py">
+      <file leaf-file-name="nnpredictions.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nnpredictions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="255">
+              <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deck.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deck.py">
+      <file leaf-file-name="table.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/table.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+            <state relative-caret-position="680">
+              <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gbpredictions.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gbpredictions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1530">
+              <caret line="96" column="21" lean-forward="false" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="startinghands.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/startinghands.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1224">
+              <caret line="72" column="39" lean-forward="false" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tools.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tools.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>hands</find>
-      <find>pot</find>
-      <find>done</find>
-      <find>---</find>
-      <find>getm</find>
-      <find>handstrengthfl</find>
-      <find>print</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -123,56 +309,54 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/handrank.py" />
-        <option value="$PROJECT_DIR$/javatest.py" />
-        <option value="$PROJECT_DIR$/mackerel.py" />
-        <option value="$PROJECT_DIR$/player.py" />
-        <option value="$PROJECT_DIR$/table.py" />
-        <option value="$PROJECT_DIR$/dataextract.py" />
-        <option value="$PROJECT_DIR$/playerstatsextract.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/deck.py" />
         <option value="$PROJECT_DIR$/startinghands.py" />
+        <option value="$PROJECT_DIR$/gbpredictions.py" />
+        <option value="$PROJECT_DIR$/playerclusteringmodel.py" />
+        <option value="$PROJECT_DIR$/nnpredictions.py" />
+        <option value="$PROJECT_DIR$/table.py" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="8" />
-    <option name="y" value="37" />
-    <option name="width" value="1253" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="710" />
+    <option name="y" value="255" />
+    <option name="width" value="952" />
     <option name="height" value="688" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Mackerel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mackerel" type="462c0819:PsiDirectoryNode" />
+              <item name="6-Max-Mackerel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6-Max-Mackerel" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="vpippfrdf&#9;null&#9;null" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../env" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -186,9 +370,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.startinghands">
-    <configuration name="dataextract" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Mackerel" />
+  <component name="RunManager" selected="Python.table">
+    <configuration name="gbpredictions" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -199,15 +382,14 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dataextract.py" />
+      <module name="6-Max-Mackerel" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gbpredictions.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="javatest" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Mackerel" />
+    <configuration name="nnpredictions" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -218,15 +400,14 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/javatest.py" />
+      <module name="6-Max-Mackerel" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nnpredictions.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="startinghands" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Mackerel" />
+    <configuration name="playerclusteringmodel" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -237,15 +418,14 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/startinghands.py" />
+      <module name="6-Max-Mackerel" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/playerclusteringmodel.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <configuration name="table" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Mackerel" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -256,15 +436,14 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <module name="6-Max-Mackerel" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/table.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Mackerel" />
+    <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -275,340 +454,454 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <module name="6-Max-Mackerel" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/temp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <list>
-      <item itemvalue="Python.javatest" />
-      <item itemvalue="Python.dataextract" />
-      <item itemvalue="Python.test" />
-      <item itemvalue="Python.table" />
-      <item itemvalue="Python.startinghands" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python.nnpredictions" />
+      <item index="1" class="java.lang.String" itemvalue="Python.playerclusteringmodel" />
+      <item index="2" class="java.lang.String" itemvalue="Python.temp" />
+      <item index="3" class="java.lang.String" itemvalue="Python.gbpredictions" />
+      <item index="4" class="java.lang.String" itemvalue="Python.table" />
     </list>
     <recent_temporary>
-      <list>
-        <item itemvalue="Python.startinghands" />
-        <item itemvalue="Python.test" />
-        <item itemvalue="Python.dataextract" />
-        <item itemvalue="Python.table" />
-        <item itemvalue="Python.javatest" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.table" />
+        <item index="1" class="java.lang.String" itemvalue="Python.nnpredictions" />
+        <item index="2" class="java.lang.String" itemvalue="Python.temp" />
+        <item index="3" class="java.lang.String" itemvalue="Python.playerclusteringmodel" />
+        <item index="4" class="java.lang.String" itemvalue="Python.gbpredictions" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="09d03554-e047-49a4-b8eb-c6aa77e59203" name="Default" comment="" />
-      <created>1521492202434</created>
+      <changelist id="50b0aab4-0bf6-443f-842c-59cb37f5821a" name="Default" comment="" />
+      <created>1521789976994</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1521492202434</updated>
+      <updated>1521789976994</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="8" y="37" width="1253" height="688" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.40553746" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25139666" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3989899" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6869565" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dataextract.py">
+    <entry file="file://$PROJECT_DIR$/player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4815">
-          <caret line="321" column="26" selection-start-line="321" selection-start-column="26" selection-end-line="321" selection-end-column="26" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/playerstatsextract.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="93" selection-start-line="93" selection-end-line="93" selection-end-column="27" />
+        <state relative-caret-position="272">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/player.py">
+    <entry file="file://$PROJECT_DIR$/temp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="153">
+          <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mackerel.py">
+    <entry file="file://$PROJECT_DIR$/playerclusteringmodel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="62" selection-start-line="5" selection-start-column="62" selection-end-line="5" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2640">
-          <caret line="176" column="26" selection-start-line="176" selection-start-column="26" selection-end-line="176" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+        <state relative-caret-position="255">
+          <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
           <folding>
-            <element signature="e#47#106#1" />
-            <element signature="e#107#126#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deck.py">
+    <entry file="file://$PROJECT_DIR$/gbpredictions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        <state relative-caret-position="1377">
+          <caret line="87" column="21" lean-forward="false" selection-start-line="87" selection-start-column="21" selection-end-line="87" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/startinghands.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="1224">
+          <caret line="72" column="39" lean-forward="false" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nnpredictions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dataextract.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4665">
-          <caret line="311" column="26" selection-start-line="311" selection-start-column="26" selection-end-line="311" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/playerstatsextract.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handrank.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/player.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mackerel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="62" selection-start-line="5" selection-start-column="62" selection-end-line="5" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2640">
-          <caret line="176" column="26" selection-start-line="176" selection-start-column="26" selection-end-line="176" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="74" column="27" lean-forward="true" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
-          <folding>
-            <element signature="e#47#106#1" />
-            <element signature="e#107#126#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataextract.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2520">
-          <caret line="168" selection-start-line="168" selection-end-line="168" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handrank.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="31" lean-forward="true" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/player.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="37" lean-forward="true" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mackerel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1335">
-          <caret line="98" column="22" lean-forward="true" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
-          <folding>
-            <element signature="e#47#106#1" />
-            <element signature="e#107#126#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="123" column="37" selection-start-line="123" selection-start-column="37" selection-end-line="123" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataextract.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handrank.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/player.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" column="40" lean-forward="true" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
-          <folding>
-            <element signature="e#47#106#1" />
-            <element signature="e#107#126#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="64" column="18" lean-forward="true" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javatest.py" />
-    <entry file="file://$PROJECT_DIR$/mackerel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="62" selection-start-line="5" selection-start-column="62" selection-end-line="5" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handrank.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2640">
-          <caret line="176" column="26" selection-start-line="176" selection-start-column="26" selection-end-line="176" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/player.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="1615">
+          <caret line="95" column="117" lean-forward="false" selection-start-line="95" selection-start-column="117" selection-end-line="95" selection-end-column="117" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deck.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handrank.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="21" />
+          <folding>
+            <element signature="e#158#174#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mackerel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/playerstatsextract.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="93" selection-start-line="93" selection-end-line="93" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
-          <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
-          <folding>
-            <element signature="e#47#106#1" />
-            <element signature="e#107#126#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataextract.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="316" column="8" selection-start-line="316" selection-start-column="8" selection-end-line="317" selection-end-column="47" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/startinghands.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="1513">
+          <caret line="89" column="35" lean-forward="false" selection-start-line="89" selection-start-column="35" selection-end-line="89" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py" />
+    <entry file="file://$PROJECT_DIR$/nnpredictions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataextract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="22" lean-forward="false" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handrank.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="21" />
+          <folding>
+            <element signature="e#158#174#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mackerel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playerstatsextract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startinghands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py" />
+    <entry file="file://$PROJECT_DIR$/nnpredictions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1343">
+          <caret line="87" column="29" lean-forward="true" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataextract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="22" lean-forward="false" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handrank.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#158#174#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mackerel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nnpredictions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playerstatsextract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startinghands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py" />
+    <entry file="file://$PROJECT_DIR$/mackerel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py" />
+    <entry file="file://$PROJECT_DIR$/dataextract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="88" column="117" lean-forward="false" selection-start-line="88" selection-start-column="117" selection-end-line="88" selection-end-column="117" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playerstatsextract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gbpredictions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="96" column="21" lean-forward="false" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handrank.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="24" column="54" lean-forward="false" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+          <folding>
+            <element signature="e#158#174#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nnpredictions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startinghands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="72" column="39" lean-forward="false" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playerclusteringmodel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-142">
+          <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -203,7 +203,7 @@ table1.players.append(player4)
 table1.players.append(player5)
 table1.players.append(player6)
 
-for i in range(1000):
+for i in range(5):
     table1.nlhhand()
 
 #print(table1.players[0].hand)

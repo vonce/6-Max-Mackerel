@@ -11,7 +11,7 @@ print(stats)
 print(stats.columns)
 print(stats.shape)
 
-modelstats = stats[stats['numplayedpf'] > 200]
+modelstats = stats[stats['numplayedpf'] > 500]
 #unnamedlist = []
 #for c in list(stats.columns):
 #    if 'Unnamed' in c:
@@ -30,19 +30,19 @@ modeldropcol = ['Unnamed: 0', 'avgstack', 'net',
                 'bb/100hands', 'winpercent'
                 ]
 
-#X = modelstats.drop(modeldropcol, axis = 1)
-#predictablestats = stats.drop(modeldropcol, axis = 1)
-modelcol = ['foldpf', 'foldtoraisepf', 'callpf', 'raisepf','pctseenfl', 'pctseentr', 'pctseenrv', 'pctseensd',]
+X = modelstats.drop(modeldropcol, axis = 1)
+predictablestats = stats.drop(modeldropcol, axis = 1)
+#modelcol = ['foldpf', 'foldtoraisepf', 'callpf', 'raisepf','pctseenfl', 'pctseentr', 'pctseenrv', 'pctseensd',]
 
-X = modelstats[modelcol]
-predictablestats = stats[modelcol]
+#X = modelstats[modelcol]
+#predictablestats = stats[modelcol]
 print(X.columns)
 ss = StandardScaler()
 
 ss.fit(X)
 
 X = ss.transform(X)
-km = KMeans(n_clusters = 10).fit(X)
+km = KMeans(n_clusters = 4).fit(X)
 
 #dbscan        =  DBSCAN(eps=2.5, min_samples=10).fit(X)
 #core_samples  =  dbscan.core_sample_indices_
@@ -69,7 +69,7 @@ fig, ax = plt.subplots()
 
 colors = {0:'red', 1:'blue', 2:'green', 3:'black', 4:'yellow', 5:'orange', 6:'purple', 7:'cyan', 8:'magenta', 9:'brown'}
 
-ax.scatter(modelstats['pctseenfl'], modelstats['bb/100hands'], c=modelstats['cluster'].apply(lambda x: colors[x]))
+ax.scatter(modelstats['callpf'], modelstats['bb/100hands'], c=modelstats['cluster'].apply(lambda x: colors[x]))
 
 plt.show()
 #print(stats[stats['cluster'] == 0])

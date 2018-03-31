@@ -134,18 +134,23 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
         for i in range(len(names)):
             handstrengthpf = tools.startinghandsrank(cards[i])
             if board:
+                #print("done")
                 if len(board) == 5:
                     handstrengthrv = calculate.handpercentile(cards[i], board)
                 else:
                     handstrengthrv = 0.0
                 if len(board) >= 4:    
                     handstrengthtr = calculate.handpercentile(cards[i], board[:4])
+                    effectivehandstrengthtr = calculate.effectivepercentile(cards[i], board[:4])
                 else:
                     handstrengthtr = 0.0
+                    effectivehandstrengthtr = 0.0
                 if len(board) >= 3:    
                     handstrengthfl = calculate.handpercentile(cards[i], board[:3])
+                    effectivehandstrengthfl = calculate.effectivepercentile(cards[i], board[:3])
                 else:
                     handstrengthfl = 0.0
+                    effectivehandstrengthfl = 0.0
             else:
                 handstrengthrv = 0.0
                 handstrengthtr = 0.0
@@ -221,6 +226,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
                     allagg[1],# flop aggression
                     round((stacks - allbets[0] - allbets[1])/flpot, 2),#stack/flop pot
                     handstrengthfl,# hand strength flop
+                    effectivehandstrengthfl,# effective hand strength flop
                     blufffl, # bluff flop
                     round((stacks - allbets[0] - allbets[1])/bigblind, 2),# stack GOING INTO turn
                     pltr,# # players GOING INTO turn
@@ -231,6 +237,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
                     allagg[2],# turn aggression
                     round((stacks - allbets[0] - allbets[1] - allbets[2])/trpot, 2),#stack/turn pot
                     handstrengthtr,# hand strength turn
+                    effectivehandstrengthtr, #effective hand strength turn
                     blufftr, #bluff turn
                     round((stacks - allbets[0] - allbets[1] - allbets[2])/bigblind, 2),# stack GOING INTO river
                     plrv,# # players GOING INTO river
@@ -272,6 +279,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
            'fl agg',# flop aggression
            'stack/flpot',# stack/flop pot
            'hand strength fl',# hand strength flop
+           'eff hand strength fl',#effective hand strength flop
            'bluff flop',# bluff flop
            'tr stack(bb)',# stack GOING INTO turn
            '#pl tr',# # players GOING INTO turn
@@ -282,6 +290,7 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
            'tr agg',# turn aggression
            'stack/trpot',# stack/turn pot
            'hand strength tr',# hand strength turn
+           'eff hand strength tr',# eff hand strength turn
            'bluff turn',# bluff turn
            'rv stack(bb)',#stack GOING INTO river
            '#pl rv',# # players GOING INTO river
