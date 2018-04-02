@@ -61,6 +61,9 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
             board = board.split(' ')
             boardtextfl = calculate.boardtexturelookup(board[:3])
             boardtexttr = calculate.boardtexturelookup(board[:4])
+        else:
+            boardtextfl = 0.0
+            boardtexttr = 0.0
         for i in range(len(cards)):
             cards[i] = cards[i].replace('10','T')
             cards[i] = cards[i].split(' ')
@@ -156,6 +159,8 @@ def extract(txt):# extracts text from Winning Poker Network datamined data.
                 handstrengthrv = 0.0
                 handstrengthtr = 0.0
                 handstrengthfl = 0.0
+                effectivehandstrengthfl = 0.0
+                effectivehandstrengthtr = 0.0
             stacks = float(re.search(names[i] + '\s\((.*?)\)', game).group(1))
             actions = re.findall(names[i] + '\s(.+)\s\(([\d\.]+)\)|' + names[i] + '\s(checks)|\*\*\*\s(\w+)\s\*\*\*|--\s(Summary)\s--|Uncalled\sbet\s\(([\d\.]+)\)\sreturned\sto\s' + names[i], game)
             bets = 0.0
