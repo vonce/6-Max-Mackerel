@@ -79,9 +79,9 @@ def gbmodel():
             ('gbr', gbrhandstrengthpf)
     ])
     params= {
-    'gbr__max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],#{'gbr__max_depth': 6, 'gbr__max_features': None, 'gbr__n_estimators': 100}
-    'gbr__n_estimators': [100, 125, 150, 200, 300, 500],
-    'gbr__max_features': ['auto', None]
+    'gbr__max_depth': [6],#{'gbr__max_depth': 6, 'gbr__max_features': None, 'gbr__n_estimators': 100}
+    'gbr__n_estimators': [100],
+    'gbr__max_features': [None]
     }
     modelpf = GridSearchCV(pipe, param_grid = params)
     modelpf.fit(X_train, y_train)
@@ -276,12 +276,13 @@ def gbmodelpredictpf(pfinput):
     
 def gbmodelpredictfl(flinput, flhandperc):
     prediction = modelfl.predict(flinput)
-    distribution = probdensityfl[(probdensityfl[0] > prediction-.025) & (probdensityfl[0] < prediction+.025)]['test actual']
+    distribution = probdensityfl[(probdensityfl[0] > prediction[0]-.025) & (probdensityfl[0] < prediction[0]+.025)]['test actual']
     fit_alpha, fit_loc, fit_beta=gamma.fit(distribution)
     #flhandperc = tools.handprobability()
     #flhandperc = flhandperc.sort_values('rank')
     for i in flhandperc.index:
         flhandperc.at[i,'rank'] = flhandperc.at[i,'rank']* gamma.pdf(flhandperc.at[i,'rank'],fit_alpha, loc=fit_loc, scale=fit_beta)
+    
     return flhandperc
 
 def gbmodelpredictefffl(flinput, effflhandperc):
@@ -324,7 +325,7 @@ def gbmodelpredictrv(rvinput, rvhandperc):
         rvhandperc.at[i,'rank'] = rvhandperc.at[i,'rank']* gamma.pdf(rvhandperc.at[i,'rank'],fit_alpha, loc=fit_loc, scale=fit_beta)
     return rvhandperc
 
-gbmodel()
+#gbmodel()
 #DELETE BELOW EVENTUALLY
 data = pd.read_csv('data.csv')
 stats = pd.read_csv('stats.csv')
@@ -367,16 +368,26 @@ datapfhand = data[['pf stack(bb)','#pl pf','position pf','position pf/#pl pf','p
                    'pctseentr', 'foldtr', 'calltr', 'bettr', 'raisetr', 'foldtoraisetr',
                    'reraisetr', 'pctseenrv', 'foldrv', 'callrv', 'betrv', 'raiserv',
                    'foldtoraiserv', 'reraiserv', 'pctseensd']]
-datapfhand = datapfhand.iloc[0].reshape(1,-1)
-
-print(datapfhand)
-
+datapfhand = datapfhand.iloc[0].values.reshape(1,-1)
+dataflhand = data[['pf stack(bb)','#pl pf','position pf','position pf/#pl pf','pf bets(bb)','pf agg','stack/pfpot',
+                   'tot bets pf/stack', 'log tot bets pf', 'log tot bets pf/stack', 'log tot agg pf',
+                   'board texture flop','fl stack(bb)', '#pl fl',
+                   'position fl', 'position fl/#pl fl', 'fl bets(bb)', 'fl bets/pot',
+                   'fl agg', 'stack/flpot', 'total bets flop','tot bets fl/stack',
+                   'log tot bets fl','log tot bets fl/stack',
+                   'foldpf', 'callpf','raisepf', 'foldtoraisepf', 'reraisepf', 'foldtoreraisepf', 'pctseenfl',
+                   'foldfl', 'callfl', 'betfl', 'raisefl', 'foldtoraisefl', 'reraisefl',
+                   'pctseentr', 'foldtr', 'calltr', 'bettr', 'raisetr', 'foldtoraisetr',
+                   'reraisetr', 'pctseenrv', 'foldrv', 'callrv', 'betrv', 'raiserv',
+                   'foldtoraiserv', 'reraiserv', 'pctseensd']]
+dataflhand['predicted pf'] = modelpf.predict(datapfhand)[0]
+dataflhand = dataflhand.iloc[0].values.reshape(1,-1)
    
 #DELETE ABOVE EVENTUALLY
 
 l = gbmodelpredictpf(datapfhand)
-m = gbmodelpredictfl(1,l)
-n = gbmodelpredictefffl(1,m)
-o = gbmodelpredicttr(1,n)
-p = gbmodelpredictefftr(1,o)
+m = gbmodelpredictfl(dataflhand,l)
+#n = gbmodelpredictefffl(1,m)
+o = gbmodelpredicttr(1,m)
+#p = gbmodelpredictefftr(1,o)
 q = gbmodelpredictrv(1,p)
