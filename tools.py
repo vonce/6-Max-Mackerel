@@ -54,16 +54,16 @@ def pfhandranks():
     startinghands = startinghands.set_index(0)
     return startinghands
 
-def handpercsq(board):
-    startinghands = []
-    d = dk.Deck()
-    startinghands += itertools.combinations(d.deck, 2)
-    startinghands = [str(h[0]) + str(h[1]) for h in startinghands]
-    startinghands = pd.DataFrame(startinghands)
-    startinghands['rank'] = [[h[0:2],h[2:4]] for h in startinghands[0]]
-    startinghands['rank'] = [calculate.handequity(h,board) for h in startinghands['rank']]
-    startinghands = startinghands.set_index(0)
-    return startinghands
+#def handpercsq(board):
+#    startinghands = []
+#    d = dk.Deck()
+#    startinghands += itertools.combinations(d.deck, 2)
+#    startinghands = [str(h[0]) + str(h[1]) for h in startinghands]
+#    startinghands = pd.DataFrame(startinghands)
+#    startinghands['rank'] = [[h[0:2],h[2:4]] for h in startinghands[0]]
+#    startinghands['rank'] = [calculate.handequity(h,board) for h in startinghands['rank']]
+#    startinghands = startinghands.set_index(0)
+#    return startinghands
 
-handpercsq(['As','Kd','4s'])
-print(handpercsq)
+#handpercsq(['As','Kd','4s'])
+#print(handpercsq)

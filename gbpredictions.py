@@ -79,14 +79,15 @@ def gbmodel():
             ('gbr', gbrhandstrengthpf)
     ])
     params= {
-    'max_depth': [1, 2, 3, 4, 5, 6, 7],
-    'n_estimators': [100, 125, 150, 200, 300, 500],
-    'max_features': ['auto', None]
+    'gbr__max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],#{'gbr__max_depth': 6, 'gbr__max_features': None, 'gbr__n_estimators': 100}
+    'gbr__n_estimators': [100, 125, 150, 200, 300, 500],
+    'gbr__max_features': ['auto', None]
     }
     modelpf = GridSearchCV(pipe, param_grid = params)
     modelpf.fit(X_train, y_train)
     print(modelpf.best_score_)
     print(modelpf.score(X_test, y_test))
+    print(modelpf.best_params_)
     probdensitypf = pd.DataFrame(modelpf.predict(datapf))
     probdensitypf['test actual'] = list(data['hand strength pf'])
     probdensitypf['diff'] = probdensitypf[0] - probdensitypf['test actual']
@@ -118,6 +119,7 @@ def gbmodel():
     modelfl.fit(X_train, y_train)
     print(modelfl.best_score_)
     print(modelfl.score(X_test, y_test))
+    print(modelfl.best_params_)
     probdensityfl = pd.DataFrame(modelfl.predict(datafl.drop(['hand strength fl ^2','eff hand strength fl ^2'], axis = 1)))
     probdensityfl['test actual'] = list(datafl['hand strength fl ^2'])
     probdensityfl[0] = np.sqrt(probdensityfl[0])
@@ -135,6 +137,7 @@ def gbmodel():
     modelefffl.fit(X_train, y_train)
     print(modelefffl.best_score_)
     print(modelefffl.score(X_test, y_test))
+    print(modelefffl.best_params_)
     probdensityefffl = pd.DataFrame(modelefffl.predict(datafl.drop(['hand strength fl ^2','eff hand strength fl ^2'], axis = 1)))
     probdensityefffl['test actual'] = list(datafl['eff hand strength fl ^2'])
     probdensityefffl[0] = np.sqrt(probdensityefffl[0])
@@ -176,6 +179,7 @@ def gbmodel():
     modeltr.fit(X_train, y_train)
     print(modeltr.best_score_)
     print(modeltr.score(X_test, y_test))
+    print(modeltr.best_params_)
     probdensitytr = pd.DataFrame(modeltr.predict(datatr.drop(['hand strength tr ^2','eff hand strength tr ^2'], axis = 1)))
     probdensitytr['test actual'] = list(datatr['hand strength tr ^2'])
     probdensitytr[0] = np.sqrt(probdensitytr[0])
@@ -193,6 +197,7 @@ def gbmodel():
     modelefftr.fit(X_train, y_train)
     print(modelefftr.best_score_)
     print(modelefftr.score(X_test, y_test))
+    print(modelefftr.best_params_)
     probdensityefftr = pd.DataFrame(modelefftr.predict(datatr.drop(['hand strength tr ^2','eff hand strength tr ^2'], axis = 1)))
     probdensityefftr['test actual'] = list(datatr['eff hand strength tr ^2'])
     probdensityefftr[0] = np.sqrt(probdensityefftr[0])
@@ -241,6 +246,7 @@ def gbmodel():
     modelrv.fit(X_train, y_train)
     print(modelrv.best_score_)
     print(modelrv.score(X_test, y_test))
+    print(modelrv.best_params_)
     probdensityrv = pd.DataFrame(modelrv.predict(datarv.drop('hand strength rv ^2', axis = 1)))
     probdensityrv['test actual'] = list(datarv['hand strength rv ^2'])
     probdensityrv[0] = np.sqrt(probdensityrv[0])
@@ -317,6 +323,8 @@ def gbmodelpredictrv(rvinput, rvhandperc):
     for i in rvhandperc.index:
         rvhandperc.at[i,'rank'] = rvhandperc.at[i,'rank']* gamma.pdf(rvhandperc.at[i,'rank'],fit_alpha, loc=fit_loc, scale=fit_beta)
     return rvhandperc
+
+gbmodel()
 #DELETE BELOW EVENTUALLY
 data = pd.read_csv('data.csv')
 stats = pd.read_csv('stats.csv')
@@ -365,6 +373,7 @@ print(datapfhand)
 
    
 #DELETE ABOVE EVENTUALLY
+
 l = gbmodelpredictpf(datapfhand)
 m = gbmodelpredictfl(1,l)
 n = gbmodelpredictefffl(1,m)
