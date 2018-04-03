@@ -78,8 +78,10 @@ def gbmodel():
             ('ss', sshandstrengthpf),
             ('gbr', gbrhandstrengthpf)
     ])
-    params = {
-        
+    params= {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7],
+    'n_estimators': [100, 125, 150, 200, 300, 500],
+    'max_features': ['auto', None]
     }
     modelpf = GridSearchCV(pipe, param_grid = params)
     modelpf.fit(X_train, y_train)
@@ -112,9 +114,6 @@ def gbmodel():
             ('ss', sshandstrengthfl),
             ('gbr', gbrhandstrengthfl)
     ])
-    params = {
-        
-    }
     modelfl = GridSearchCV(pipe, param_grid = params)
     modelfl.fit(X_train, y_train)
     print(modelfl.best_score_)
@@ -132,9 +131,6 @@ def gbmodel():
             ('ss', sshandstrengthefffl),
             ('gbr', gbrhandstrengthefffl)
     ])
-    params = {
-        
-    }
     modelefffl = GridSearchCV(pipe, param_grid = params)
     modelefffl.fit(X_train, y_train)
     print(modelefffl.best_score_)
@@ -176,9 +172,6 @@ def gbmodel():
             ('ss', sshandstrengthtr),
             ('gbr', gbrhandstrengthtr)
     ])
-    params = {
-        
-    }
     modeltr = GridSearchCV(pipe, param_grid = params)
     modeltr.fit(X_train, y_train)
     print(modeltr.best_score_)
@@ -196,9 +189,6 @@ def gbmodel():
             ('ss', sshandstrengthefftr),
             ('gbr', gbrhandstrengthefftr)
     ])
-    params = {
-        
-    }
     modelefftr = GridSearchCV(pipe, param_grid = params)
     modelefftr.fit(X_train, y_train)
     print(modelefftr.best_score_)
@@ -247,9 +237,6 @@ def gbmodel():
             ('ss', sshandstrengthrv),
             ('gbr', gbrhandstrengthrv)
     ])
-    params = {
-        
-    }
     modelrv = GridSearchCV(pipe, param_grid = params)
     modelrv.fit(X_train, y_train)
     print(modelrv.best_score_)
