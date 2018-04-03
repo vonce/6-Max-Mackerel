@@ -10,14 +10,8 @@ from jnius import autoclass
 
 calculate = autoclass("flounder.Calculate")
 
-pfequity = pd.read_csv('./tables/totalequity.csv')
-#print(pfequity.columns)
-pfequity = pfequity.drop('Unnamed: 0', axis = 1)
-##print(pfequity.sort_values(by = ['1']))
-#print(pfequity['1'].min())
-pfequity['1'] = pfequity['1'] - pfequity['1'].min()
-pfequity['1'] = pfequity['1']/pfequity['1'].max()
-pfequity = pfequity.set_index(['0'])
+pfrank = pd.read_csv('./tables/linearrank.csv')
+pfrank = pfrank.set_index(['Unnamed: 0'])
 #print(pfequity.sort_values(by = ['1']))
 pfallequity = pd.read_csv('./tables/allequity.csv')
 pfallequity = pfallequity.set_index(['0'])
@@ -47,16 +41,29 @@ def startinghandsequity(h, h2):
     return pfallequity.at[simplehand(h2), simplehand(h)]
 
 def startinghandsrank(h):
-    return pfequity.at[simplehand(h), '1']
+    return pfrank.at[simplehand(h), 'num']
 
-def handprobability():
+def pfhandranks():
     startinghands = []
     d = dk.Deck()
     startinghands += itertools.combinations(d.deck, 2)
     startinghands = [str(h[0]) + str(h[1]) for h in startinghands]
     startinghands = pd.DataFrame(startinghands)
-    print(startinghands[0])
     startinghands['rank'] = [[h[0:2],h[2:4]] for h in startinghands[0]]
     startinghands['rank'] = [startinghandsrank(h) for h in startinghands['rank']]
     startinghands = startinghands.set_index(0)
     return startinghands
+
+def handpercsq(board):
+    startinghands = []
+    d = dk.Deck()
+    startinghands += itertools.combinations(d.deck, 2)
+    startinghands = [str(h[0]) + str(h[1]) for h in startinghands]
+    startinghands = pd.DataFrame(startinghands)
+    startinghands['rank'] = [[h[0:2],h[2:4]] for h in startinghands[0]]
+    startinghands['rank'] = [calculate.handequity(h,board) for h in startinghands['rank']]
+    startinghands = startinghands.set_index(0)
+    return startinghands
+
+handpercsq(['As','Kd','4s'])
+print(handpercsq)
