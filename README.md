@@ -20,7 +20,6 @@ Every lookup table I made used this technique, adjusting the recursive relation 
 	I decided to use a gradient boost regression tree to make our predictions. We have a lot of weak almost uncorrelated features and gradient boost seemed like a good way to create a better ensemble model. The results of the gradient boost model was also superior to the neural net and elastic net regression models. I made 6 different models, a preflop model which only uses features that are available at preflop, a flop model (predicting hand strength) and a flop effective model (predicting effective hand strength, a turn model and turn effective model, and a river model. Because effective strength and actual hand strength are the same on the river, there was no need for a river effective. With these predictions I created a table that compared predicted hand strength to the actual hand strength. When entering a range of predictions of +- .025, the histogram distribution shows that our model got more accurate when it predicted higher hand strengths. This makes sense because people check and bet smaller than their hand is worth to try and keep people on the hook much more often than people wildly overvaluing their hands.
 	
 ![](https://i.imgur.com/IZa2eEU.png)
-
 	The first histogram is the distribution of hand strengths when my model predicted a hand strength of about .4. The 2nd histogram is the distribution of hand strengths when my model predicted a hand strength of about .9. When my model makes a prediction, I fit a gamma distribution and use the gamma distribution to assign a gamma value to all possible 2 card hands, then normalize for a percentage. For each new street, new gamma values are multiplied with the old ones, as we go through more streets, our model narrows down which hands are the most likely throughout the hand.
 
 #####Preflop
@@ -34,5 +33,4 @@ Every lookup table I made used this technique, adjusting the recursive relation 
 	As our model gets more information, it narrows down more and more possible hands. From these percentages at each street we can determine an estimated equity that we can use for our robot. Even though we can’t pinpoint a specific hand, This is how poker players play the game. Instead of guessing a players hand outright, they think of a range of possible hands and try and figure out their equity from there.
 
 ###Poker Table
-
 	In order to make a bot that could play, I had to simulate a poker game with poker rules in python. I started with a table object that could took a list populated by player objects. Players could be either human players or Mackerel bots. Player objects send commands to the poker table, and if the command is against the rules, will get an error and a prompt for a correct input.
