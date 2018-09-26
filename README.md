@@ -10,8 +10,11 @@ From this predicted strength, I looked at the original data set and how the actu
 
 The first step I took was to download the data I needed from a site called hhsmithy.com which datamines at poker tables logging each hand at a bunch of poker tables. I spent about 12 dollars on what they said was about 1 million hands. I extracted the data by reading each individual hand into separate strings (made easy because each hand starts with ‘started at’ and ends with ‘ended at’) and checked to see if a hand was revealed. If a hand was revealed, I used regular expressions to log the information I needed for the hand specific stats.. This was iterated through all one thousand and something files. I then went back through all the hands and recorded player specific stats, iterating through all the files again.
 
-#### Example Hand. Usable because there are hands shown at showdown.
+#### Example Hand
 ![](https://i.imgur.com/GTMNdPQ.png)
+
+#### Data Features
+![](https://i.imgur.com/Cbc6mZJ.png)
 
 One of the biggest problems I can see with this approach is that my sample is very biased, because I can only see hands that make it to showdown. Our data set will never see a successful bluff and probably skews towards much stronger hands than average. However, most hands that make it to showdown are fairly close in strength (you need at least two players to either to check and not bet because they are both fairly weak, or both players to bet and call each other because they both agree on that price for the strength of their hand) so our predictions should reflect what most players would assess their hand strength to be worth monetarily. The relationship between bets and hand strength was exponential, so I did some feature engineering by natural logging the bets.
 
